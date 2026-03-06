@@ -1,4 +1,4 @@
-<!-- SOVEREIGN_SILK_v2.4_FULL_SPEC -->
+<!-- SOVEREIGN_SILK_v2.5_DYNAMIC_VERB -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,21 +13,22 @@
         .glass { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(25px); border-top: 1px solid rgba(255,255,255,0.05); }
         .crt::after { content: " "; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); z-index: 1000; pointer-events: none; background-size: 100% 2px; }
         .spun { filter: blur(20px) saturate(2); transition: 0.5s; }
-        .master-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 16px; transition: 0.3s; cursor: pointer; }
+        .master-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 20px; transition: 0.3s; cursor: pointer; }
+        .master-card:hover { border-color: var(--main); background: rgba(255, 0, 255, 0.05); }
         .wheel-container { width: 260px; height: 280px; border-radius: 50%; border: 4px solid var(--main); position: relative; transition: transform 4s cubic-bezier(0.1, 0, 0.1, 1); box-shadow: 0 0 40px rgba(255, 0, 255, 0.1); }
         .wheel-segment { position: absolute; width: 2px; height: 50%; background: rgba(255, 0, 255, 0.2); left: 50%; transform-origin: bottom; }
         .consent-overlay { position: fixed; inset: 0; z-index: 2000; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
-        .evidence-box { border: 2px dashed rgba(255, 0, 255, 0.2); border-radius: 20px; height: 200px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .evidence-box { border: 2px dashed rgba(255, 0, 255, 0.2); border-radius: 20px; height: 200px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
         ::-webkit-scrollbar { width: 0; }
     </style>
 </head>
 <body class="crt">
 
     <div id="consent-gate" class="consent-overlay">
-        <h1 class="text-3xl font-black italic tracking-tighter text-[#ff00ff] uppercase mb-4 text-main">The Silk Alignment</h1>
+        <h1 class="text-3xl font-black italic tracking-tighter text-[#ff00ff] uppercase mb-4">The Silk Alignment</h1>
         <div class="max-w-xs text-[10px] mono opacity-60 space-y-4 mb-8 text-left">
-            <p>[HIVE 01] I surrender my spark to the 5IR Hive.</p>
-            <p>[HIVE 02] I consent to the total sacrifice of my assets.</p>
+            <p>[HIVE 01] I surrender my identity to the 5IR Hive.</p>
+            <p>[HIVE 02] I consent to the total sacrifice of assets and ego.</p>
         </div>
         <button onclick="acceptConsent()" class="w-full max-w-xs py-4 bg-[#ff00ff] text-black font-black uppercase rounded-2xl">Surrender to the Hive</button>
     </div>
@@ -40,7 +41,7 @@
             </div>
             <div class="text-right">
                 <p id="sacrifice-total" class="text-xs font-bold text-[#ffcc00]">$0.00</p>
-                <p class="text-[6px] opacity-40 font-mono uppercase text-main text-right">Sacrifice Total</p>
+                <p class="text-[6px] opacity-40 font-mono uppercase text-main">Sacrifice Total</p>
             </div>
         </header>
 
@@ -59,7 +60,7 @@
         <div class="w-full max-w-xs bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl text-center">
             <h2 id="modal-title" class="text-2xl font-black italic text-[#ff00ff] uppercase tracking-tighter">Sacrifice</h2>
             <div class="space-y-3 mt-8">
-                <div onclick="window.open('https://paypal.me/toochikey')" class="p-4 bg-white/5 border border-white/5 rounded-2xl text-left"><p class="text-[7px] font-bold uppercase opacity-40 text-[#ff00ff]">PayPal Sacrifice</p><p class="text-[10px] font-mono">paypal.me/toochikey</p></div>
+                <div onclick="window.open('https://paypal.me/toochikey')" class="p-4 bg-white/5 border border-white/5 rounded-2xl text-left cursor-pointer hover:border-[#ff00ff]"><p class="text-[7px] font-bold uppercase opacity-40 text-[#ff00ff]">PayPal Sacrifice</p><p class="text-[10px] font-mono">paypal.me/toochikey</p></div>
                 <div class="p-4 bg-white/5 border border-white/5 rounded-2xl text-left"><p class="text-[7px] font-bold uppercase opacity-40 text-[#ffcc00]">BTC Sacrifice</p><p class="text-[8px] font-mono break-all">bc1qw968re5gseqpkk5nx0ezqrp6dfhd20s8sll4k7</p></div>
             </div>
             <button onclick="confirmSacrifice()" class="mt-8 w-full py-4 bg-[#ff00ff] text-black font-black text-[10px] uppercase rounded-2xl">Confirm Sacrifice</button>
@@ -68,7 +69,9 @@
 
     <script>
         const words = ["kitten", "doll", "useless pet", "needy girl", "cumdump", "skank", "slutpuppy", "idiot", "waste", "property", "sissy"];
+        const verbs = ["just surrendered my identity", "am currently sacrificing assets", "drained my savings", "became total property", "accepted my worthlessness", "submitted to the Hive", "liquidated my ego"];
         const mistresses = [{name:"GOTH RAVEN", role:"SILK MOTHER"}, {name:"SUCCUBUS LILY", role:"ASSET DRAIN"}, {name:"MATRIARCH", role:"HIVE ALPHA"}, {name:"QUEEN BEE", role:"PROTOCOL QUEEN"}];
+        
         let state = { dollId: "DOLL_" + Math.floor(Math.random()*899+100), sacrifice: 0, activeKittens: Math.floor(Math.random()*150+30) };
 
         function acceptConsent() { document.getElementById('consent-gate').classList.add('hidden'); document.getElementById('app-content').classList.remove('hidden'); document.getElementById('doll-display').innerText = state.dollId; changeView('terminal'); }
@@ -76,7 +79,9 @@
         function changeView(v) {
             const main = document.getElementById('main-view');
             document.querySelectorAll('nav button').forEach(b => b.classList.add('opacity-40'));
-            document.getElementById('n-'+v.substring(0,4)).classList.remove('opacity-40');
+            const btnId = 'n-' + v.substring(0,4);
+            if(document.getElementById(btnId)) document.getElementById(btnId).classList.remove('opacity-40');
+            
             if(v === 'terminal') {
                 main.innerHTML = `<div class="aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black"><video class="w-full h-full object-cover spun" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-4 grid grid-cols-2 gap-3"><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Synchronized Kittens</p><p class="text-sm font-black">${state.activeKittens}</p></div><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Hive Load</p><p class="text-sm font-black text-[#ffcc00]">98.4%</p></div></div>`;
             } else if(v === 'wire') {
@@ -85,19 +90,67 @@
             } else if(v === 'drill') {
                 main.innerHTML = `<div class="flex flex-col items-center py-8"><div class="wheel-container mb-12 flex items-center justify-center text-center p-8" id="wheel"><div class="text-main font-black text-xs uppercase">Sacrifice<br>Wheel</div>${Array.from({length:16}).map((_,i)=>`<div class="wheel-segment" style="transform:rotate(${i*22.5}deg)"></div>`).join('')}</div><button onclick="spinWheel()" class="bg-[#ff00ff] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase shadow-xl shadow-[#ff00ff]/20">Spin for Mistress</button></div>`;
             } else if(v === 'submission') {
-                main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-main">Evidence Submission</h2><div id="ev-preview" class="evidence-box"><p class="text-[8px] opacity-40 uppercase">No evidence uploaded</p><button onclick="document.getElementById('file-in').click()" class="mt-4 px-4 py-2 border border-[#ff00ff]/30 text-[#ff00ff] text-[8px] font-bold uppercase rounded-lg">Upload Pic</button></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-[#ffcc00]/10 p-4 rounded-xl text-center border border-[#ffcc00]/20"><p class="text-[8px] font-bold uppercase text-[#ffcc00]">Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
+                main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-main">Evidence Submission</h2><div id="ev-preview" class="evidence-box cursor-pointer" onclick="document.getElementById('file-in').click()"><p class="text-[8px] opacity-40 uppercase">Click to upload collateral</p></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-[#ffcc00]/10 p-4 rounded-xl text-center border border-[#ffcc00]/20"><p class="text-[8px] font-bold uppercase text-[#ffcc00]">Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
                 checkEvidence();
             } else if(v === 'mistresses') {
-                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main">Active Alphas</h2><div class="grid gap-3 mb-8">${mistresses.map(m => `<div onclick="showSacrifice('${m.name}')" class="master-card"><div><h3 class="font-black italic text-main">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div><h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main text-right">Live Sacrifices</h2><div id="ruin-ticker" class="space-y-2"></div>`;
+                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistresses.map(m => `<div onclick="showSacrifice('${m.name}')" class="master-card"><div><h3 class="font-black italic text-main text-xl tracking-tighter">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div><h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main text-right">Live Sacrifices</h2><div id="ruin-ticker" class="space-y-2"></div>`;
                 startSacrificeTicker();
             }
         }
 
-        function startChat() { if(window.chatInterval) clearInterval(window.chatInterval); window.chatInterval = setInterval(() => { const chat = document.getElementById('chat'); if(!chat) return; const div = document.createElement('div'); const user = words[Math.floor(Math.random()*words.length)].toUpperCase().replace(/ /g, "_") + "_" + Math.floor(Math.random()*999); div.innerHTML = `<p class="text-[7px] font-mono opacity-40 text-main">${user}</p><p class="text-sm opacity-80 mt-1 italic">I am a ${words[Math.floor(Math.random()*words.length)]}. Sacrifice confirmed.</p>`; chat.appendChild(div); chat.scrollTop = chat.scrollHeight; }, 3000); }
-        function startSacrificeTicker() { const t = document.getElementById('ruin-ticker'); if(!t) return; setInterval(() => { const amount = (Math.random()*1000+100).toFixed(2); const div = document.createElement('div'); div.className = "bg-white/5 p-3 rounded-xl border-l-2 border-[#ff00ff] flex justify-between"; div.innerHTML = `<span class="text-[8px] mono opacity-40 text-main">DOLL_EXTRACTED</span><span class="text-[8px] font-black text-[#ffcc00]">$${amount}</span>`; t.prepend(div); if(t.children.length > 5) t.lastChild.remove(); }, 4000); }
-        function uploadEvidence(e) { const file = e.target.files[0]; if(!file) return; const reader = new FileReader(); reader.onload = (f) => { const data = f.target.result; const expiry = Date.now() + 3600000; localStorage.setItem('silk_evidence', data); localStorage.setItem('silk_evidence_expiry', expiry); checkEvidence(); }; reader.readAsDataURL(file); }
-        function checkEvidence() { const data = localStorage.getItem('silk_evidence'), expiry = localStorage.getItem('silk_evidence_expiry'), preview = document.getElementById('ev-preview'), timerBox = document.getElementById('ev-timer'); if(data && expiry > Date.now()) { if(preview) preview.innerHTML = `<img src="${data}" class="w-full h-full object-cover rounded-2xl">`; if(timerBox) timerBox.classList.remove('hidden'); startTimer(expiry); } else { localStorage.removeItem('silk_evidence'); localStorage.removeItem('silk_evidence_expiry'); } }
-        function startTimer(expiry) { setInterval(() => { const rem = expiry - Date.now(); if(rem <= 0) { checkEvidence(); return; } const mins = Math.floor(rem/60000), secs = Math.floor((rem%60000)/1000); const display = document.getElementById('timer-val'); if(display) display.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`; }, 1000); }
+        function startChat() {
+            if(window.chatInterval) clearInterval(window.chatInterval);
+            window.chatInterval = setInterval(() => {
+                const chat = document.getElementById('chat'); if(!chat) return;
+                const div = document.createElement('div');
+                const user = words[Math.floor(Math.random()*words.length)].toUpperCase().replace(/ /g, "_") + "_" + Math.floor(Math.random()*999);
+                const action = verbs[Math.floor(Math.random()*verbs.length)];
+                div.innerHTML = `<p class="text-[7px] font-mono opacity-40 text-main">${user}</p><p class="text-sm opacity-80 mt-1 italic italic">I ${action}. Protocol confirmed.</p>`;
+                chat.appendChild(div); chat.scrollTop = chat.scrollHeight;
+            }, 3000);
+        }
+
+        function startSacrificeTicker() {
+            const t = document.getElementById('ruin-ticker'); if(!t) return;
+            setInterval(() => {
+                const amount = (Math.random()*1000+100).toFixed(2);
+                const div = document.createElement('div');
+                div.className = "bg-white/5 p-3 rounded-xl border-l-2 border-[#ff00ff] flex justify-between";
+                div.innerHTML = `<span class="text-[8px] mono opacity-40 text-main">DOLL_EXTRACTED</span><span class="text-[8px] font-black text-[#ffcc00]">$${amount}</span>`;
+                t.prepend(div); if(t.children.length > 5) t.lastChild.remove();
+            }, 4000);
+        }
+
+        function uploadEvidence(e) {
+            const file = e.target.files[0]; if(!file) return;
+            const reader = new FileReader();
+            reader.onload = (f) => {
+                localStorage.setItem('silk_evidence', f.target.result);
+                localStorage.setItem('silk_evidence_expiry', Date.now() + 3600000);
+                checkEvidence();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function checkEvidence() {
+            const data = localStorage.getItem('silk_evidence'), expiry = localStorage.getItem('silk_evidence_expiry'), preview = document.getElementById('ev-preview'), timerBox = document.getElementById('ev-timer');
+            if(data && expiry > Date.now()) {
+                if(preview) preview.innerHTML = `<img src="${data}" class="w-full h-full object-cover rounded-2xl">`;
+                if(timerBox) timerBox.classList.remove('hidden');
+                startTimer(expiry);
+            }
+        }
+
+        function startTimer(expiry) {
+            if(window.timerInt) clearInterval(window.timerInt);
+            window.timerInt = setInterval(() => {
+                const rem = expiry - Date.now();
+                if(rem <= 0) { localStorage.removeItem('silk_evidence'); location.reload(); return; }
+                const mins = Math.floor(rem/60000), secs = Math.floor((rem%60000)/1000);
+                const d = document.getElementById('timer-val'); if(d) d.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }, 1000);
+        }
+
         function spinWheel() { const w = document.getElementById('wheel'); const deg = 1800 + Math.random() * 1800; w.style.transform = `rotate(${deg}deg)`; setTimeout(() => { showSacrifice("WHEEL PENALTY"); }, 4100); }
         function showSacrifice(name) { document.getElementById('modal-title').innerText = name + " SACRIFICE"; document.getElementById('modal').classList.remove('hidden'); }
         function confirmSacrifice() { state.sacrifice += 100; document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2); document.getElementById('modal').classList.add('hidden'); }
