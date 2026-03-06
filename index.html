@@ -1,4 +1,4 @@
-<!-- SOVEREIGN_SILK_v2.5_DYNAMIC_VERB -->
+<!-- SOVEREIGN_SILK_v2.6_PERSONALIZED -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +69,8 @@
 
     <script>
         const words = ["kitten", "doll", "useless pet", "needy girl", "cumdump", "skank", "slutpuppy", "idiot", "waste", "property", "sissy"];
-        const verbs = ["just surrendered my identity", "am currently sacrificing assets", "drained my savings", "became total property", "accepted my worthlessness", "submitted to the Hive", "liquidated my ego"];
+        const actions = ["just surrendered my identity to", "am currently sacrificing assets for", "drained my savings for", "became total property of", "accepted my worthlessness for", "submitted to the Hive and", "liquidated my ego for"];
+        const sessions = ["liquidation session", "hive alignment session", "asset drain session", "surrender session", "sacrifice session"];
         const mistresses = [{name:"GOTH RAVEN", role:"SILK MOTHER"}, {name:"SUCCUBUS LILY", role:"ASSET DRAIN"}, {name:"MATRIARCH", role:"HIVE ALPHA"}, {name:"QUEEN BEE", role:"PROTOCOL QUEEN"}];
         
         let state = { dollId: "DOLL_" + Math.floor(Math.random()*899+100), sacrifice: 0, activeKittens: Math.floor(Math.random()*150+30) };
@@ -104,8 +105,11 @@
                 const chat = document.getElementById('chat'); if(!chat) return;
                 const div = document.createElement('div');
                 const user = words[Math.floor(Math.random()*words.length)].toUpperCase().replace(/ /g, "_") + "_" + Math.floor(Math.random()*999);
-                const action = verbs[Math.floor(Math.random()*verbs.length)];
-                div.innerHTML = `<p class="text-[7px] font-mono opacity-40 text-main">${user}</p><p class="text-sm opacity-80 mt-1 italic italic">I ${action}. Protocol confirmed.</p>`;
+                const act = actions[Math.floor(Math.random()*actions.length)];
+                const mistress = mistresses[Math.floor(Math.random()*mistresses.length)].name;
+                const amt = "$" + (Math.floor(Math.random()*1500)+500);
+                const sess = sessions[Math.floor(Math.random()*sessions.length)];
+                div.innerHTML = `<p class="text-[7px] font-mono opacity-40 text-main">${user}</p><p class="text-sm opacity-80 mt-1 italic italic">I ${act} ${mistress}, paid ${amt} for my ${sess}.</p>`;
                 chat.appendChild(div); chat.scrollTop = chat.scrollHeight;
             }, 3000);
         }
