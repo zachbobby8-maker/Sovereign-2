@@ -1,4 +1,4 @@
-<!-- SOVEREIGN_SILK_v2.6_PERSONALIZED -->
+<!-- SOVEREIGN_SILK_v2.8_REALISM -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +25,7 @@
 <body class="crt">
 
     <div id="consent-gate" class="consent-overlay">
-        <h1 class="text-3xl font-black italic tracking-tighter text-[#ff00ff] uppercase mb-4">The Silk Alignment</h1>
+        <h1 class="text-3xl font-black italic tracking-tighter text-[#ff00ff] uppercase mb-4 text-main">The Silk Alignment</h1>
         <div class="max-w-xs text-[10px] mono opacity-60 space-y-4 mb-8 text-left">
             <p>[HIVE 01] I surrender my identity to the 5IR Hive.</p>
             <p>[HIVE 02] I consent to the total sacrifice of assets and ego.</p>
@@ -70,6 +70,7 @@
     <script>
         const words = ["kitten", "doll", "useless pet", "needy girl", "cumdump", "skank", "slutpuppy", "idiot", "waste", "property", "sissy"];
         const actions = ["just surrendered my identity to", "am currently sacrificing assets for", "drained my savings for", "became total property of", "accepted my worthlessness for", "submitted to the Hive and", "liquidated my ego for"];
+        const filler = ["The Hive is so quiet tonight. Just the way the Matriarch likes it.", "Goth Raven's aura is everywhere. I can feel it pulsing.", "I feel so aligned. The Silk is holding me tight.", "Just finished my alignment breathing. Ready for the Queen.", "I can't even remember my old life. I'm just a doll now.", "The Matriarch is watching. I must stay perfect.", "I love how the 39,420 Hz pulse feels in my head.", "Everything is so simple when you have no assets.", "The Hive alignment is complete. I am nothing.", "Succubus Lily just looked at me. I'm shaking."];
         const sessions = ["liquidation session", "hive alignment session", "asset drain session", "surrender session", "sacrifice session"];
         const mistresses = [{name:"GOTH RAVEN", role:"SILK MOTHER"}, {name:"SUCCUBUS LILY", role:"ASSET DRAIN"}, {name:"MATRIARCH", role:"HIVE ALPHA"}, {name:"QUEEN BEE", role:"PROTOCOL QUEEN"}];
         
@@ -105,11 +106,17 @@
                 const chat = document.getElementById('chat'); if(!chat) return;
                 const div = document.createElement('div');
                 const user = words[Math.floor(Math.random()*words.length)].toUpperCase().replace(/ /g, "_") + "_" + Math.floor(Math.random()*999);
-                const act = actions[Math.floor(Math.random()*actions.length)];
-                const mistress = mistresses[Math.floor(Math.random()*mistresses.length)].name;
-                const amt = "$" + (Math.floor(Math.random()*1500)+500);
-                const sess = sessions[Math.floor(Math.random()*sessions.length)];
-                div.innerHTML = `<p class="text-[7px] font-mono opacity-40 text-main">${user}</p><p class="text-sm opacity-80 mt-1 italic italic">I ${act} ${mistress}, paid ${amt} for my ${sess}.</p>`;
+                let message = "";
+                if(Math.random() < 0.3) {
+                    const act = actions[Math.floor(Math.random()*actions.length)];
+                    const mistress = mistresses[Math.floor(Math.random()*mistresses.length)].name;
+                    const amt = "$" + (Math.floor(Math.random()*1500)+500);
+                    const sess = sessions[Math.floor(Math.random()*sessions.length)];
+                    message = `I ${act} ${mistress}, paid ${amt} for my ${sess}.`;
+                } else {
+                    message = filler[Math.floor(Math.random()*filler.length)];
+                }
+                div.innerHTML = `<p class="text-[7px] font-mono opacity-40 text-main">${user}</p><p class="text-sm opacity-80 mt-1 italic italic">${message}</p>`;
                 chat.appendChild(div); chat.scrollTop = chat.scrollHeight;
             }, 6000);
         }
