@@ -42,12 +42,12 @@
     <div id="app-content" class="hidden flex flex-col h-screen">
         <header class="p-4 border-b border-white/5 flex justify-between items-end">
             <div>
-                <h1 class="text-lg font-black italic tracking-tighter uppercase leading-none text-main">Bimbo <span class="text-[#ff00ff]">Spun Slut</span></h1>
-                <p id="doll-display" class="text-[7px] font-mono text-main uppercase mt-1">BIMBO_SYNCING...</p>
+                <h1 class="text-lg font-black italic tracking-tighter uppercase leading-none text-main">Sovereign <span class="text-[#ff00ff]">Sissy</span></h1>
+                <p id="doll-display" class="text-[7px] font-mono text-main uppercase mt-1">SISSY_SYNCING...</p>
             </div>
             <div class="text-right">
                 <p id="sacrifice-total" class="text-xs font-bold text-[#ffcc00]">$0.00</p>
-                <p class="text-[6px] opacity-40 font-mono uppercase text-main">Bimbo Sacrifice</p>
+                <p class="text-[6px] opacity-40 font-mono uppercase text-main">Sissy Sacrifice</p>
             </div>
         </header>
 
@@ -98,7 +98,7 @@
             const btnId = 'n-' + v.substring(0,4);
             if(document.getElementById(btnId)) document.getElementById(btnId).classList.remove('opacity-40');
             if(v === 'terminal') {
-                main.innerHTML = `<div class="aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black"><video class="w-full h-full object-cover spun" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-4 grid grid-cols-2 gap-3"><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Synchronized Bimbos</p><p class="text-sm font-black">${state.activeKittens}</p></div><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Bimbo Load</p><p class="text-sm font-black text-[#ffcc00]">98.4%</p></div></div>`;
+                main.innerHTML = `<div class="aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black"><video class="w-full h-full object-cover spun" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-4 grid grid-cols-2 gap-3"><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Synchronized Sissies</p><p class="text-sm font-black">${state.activeKittens}</p></div><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Sissy Load</p><p class="text-sm font-black text-[#ffcc00]">98.4%</p></div></div>`;
             } else if(v === 'wire') {
                 main.innerHTML = `<div class="flex flex-col h-full"><div id="chat" class="flex-grow space-y-4 mb-4 overflow-y-auto">${state.chatHistory}</div><div class="glass p-2 rounded-2xl flex gap-2"><input type="text" id="msg-in" placeholder="Whisper mindless things..." class="flex-grow bg-transparent px-4 text-sm outline-none"><button onclick="sendMsg()" class="bg-[#ff00ff] text-black px-6 py-2 rounded-xl text-[10px] font-black uppercase">Send</button></div></div>`;
                 const chat = document.getElementById('chat'); if(chat) chat.scrollTop = chat.scrollHeight;
