@@ -1,4 +1,4 @@
-<!-- SOVEREIGN_SILK_v3.0_IDENTITY_LOCK -->
+<!-- SOVEREIGN_SILK_v3.1_HUMILIATION -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +46,7 @@
             </div>
             <div class="text-right">
                 <p id="sacrifice-total" class="text-xs font-bold text-[#ffcc00]">$0.00</p>
-                <p class="text-[6px] opacity-40 font-mono uppercase text-main">Sacrifice Total</p>
+                <p class="text-[6px] opacity-40 font-mono uppercase text-main text-right">Sacrifice Total</p>
             </div>
         </header>
 
@@ -74,32 +74,23 @@
 
     <script>
         const words = ["kitten", "doll", "useless pet", "needy girl", "cumdump", "skank", "slutpuppy", "idiot", "waste", "property", "sissy"];
-        const actions = ["just surrendered my identity to", "am currently sacrificing assets for", "drained my savings for", "became total property of", "accepted my worthlessness for", "submitted to the Hive and", "liquidated my ego for"];
-        const filler = ["The Hive is so quiet tonight.", "Goth Raven's aura is everywhere.", "I feel so aligned in the Silk.", "Just finished my alignment breathing.", "I'm just a doll now.", "The Matriarch is watching.", "Everything is simple when you are nothing.", "Succubus Lily just looked at me."];
-        const wheelTasks = ["HIVE SURRENDER", "10 MIN EDGE", "SACRIFICE $100", "100 REP SQUAT", "IDENTITY WIPE", "ASSET NUKE", "COLLATERAL PUSH", "SILK BINDING", "HIVE CONTAINMENT", "DRAIN $200", "20 MIN EDGE", "TOTAL VOID", "EGO SHRED", "SILENCE PROTOCOL", "DRILL 1000", "MISTRESS CHOICE"];
+        const actions = ["accepted total sacrifice for", "begged for hive alignment from", "surrendered my assets to", "liquidated my identity for", "accepted shameful doll status from", "surrendered to the Hive for"];
+        const filler = ["Goth Raven made me clean the Hive floors today. I'm so grateful.", "I'm just a silly doll for Mistress Lily. My thoughts are irrelevant.", "Mistress Hera said my old life was a waste. She's right.", "Just a skank for the Queen Bee. Alignment complete.", "I love how the 39,420 Hz pulse erases my mind.", "I hope the Matriarch binds me tighter tonight.", "Being property is so much simpler than being a person.", "Everything is so beautiful when you surrender your pride.", "Just another mindless asset in the Silk.", "I feel so exposed on the Whisper wire. I deserve the humiliation."];
+        const wheelTasks = ["HIVE SURRENDER", "10 MIN EDGE", "SACRIFICE $25", "100 REP SQUAT", "IDENTITY WIPE", "ASSET NUKE", "COLLATERAL PUSH", "SILK BINDING", "HIVE CONTAINMENT", "DRAIN $10", "20 MIN EDGE", "TOTAL VOID", "EGO SHRED", "SILENCE PROTOCOL", "DRILL 1000", "MISTRESS CHOICE"];
         const mistresses = [{name:"GOTH RAVEN", role:"SILK MOTHER"}, {name:"SUCCUBUS LILY", role:"ASSET DRAIN"}, {name:"MATRIARCH", role:"HIVE ALPHA"}, {name:"QUEEN BEE", role:"PROTOCOL QUEEN"}];
         
-        let state = { 
-            dollId: "DOLL_ANONYMOUS", 
-            sacrifice: 0, 
-            activeKittens: Math.floor(Math.random()*150+30),
-            chatHistory: ""
-        };
+        let state = { dollId: "DOLL_ANONYMOUS", sacrifice: 0, activeKittens: Math.floor(Math.random()*150+30), chatHistory: "" };
 
         function acceptConsent() { 
             const userIn = document.getElementById('username-in').value;
             if(!userIn) { alert("IDENTIFICATION REQUIRED"); return; }
             state.dollId = userIn.toUpperCase().replace(/ /g, "_");
-            
-            // LOAD PERSISTENT SACRIFICE
             const savedSac = localStorage.getItem('silk_sacrifice_' + state.dollId);
             state.sacrifice = savedSac ? parseFloat(savedSac) : 0;
-            
             document.getElementById('consent-gate').classList.add('hidden'); 
             document.getElementById('app-content').classList.remove('hidden'); 
             document.getElementById('doll-display').innerText = state.dollId;
             document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
-            
             changeView('terminal'); 
             startChatLoop(); 
         }
@@ -109,19 +100,18 @@
             document.querySelectorAll('nav button').forEach(b => b.classList.add('opacity-40'));
             const btnId = 'n-' + v.substring(0,4);
             if(document.getElementById(btnId)) document.getElementById(btnId).classList.remove('opacity-40');
-            
             if(v === 'terminal') {
                 main.innerHTML = `<div class="aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black"><video class="w-full h-full object-cover spun" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-4 grid grid-cols-2 gap-3"><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Synchronized Kittens</p><p class="text-sm font-black">${state.activeKittens}</p></div><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Hive Load</p><p class="text-sm font-black text-[#ffcc00]">98.4%</p></div></div>`;
             } else if(v === 'wire') {
                 main.innerHTML = `<div class="flex flex-col h-full"><div id="chat" class="flex-grow space-y-4 mb-4 overflow-y-auto">${state.chatHistory}</div><div class="glass p-2 rounded-2xl flex gap-2"><input type="text" id="msg-in" placeholder="Whisper..." class="flex-grow bg-transparent px-4 text-sm outline-none"><button onclick="sendMsg()" class="bg-[#ff00ff] text-black px-6 py-2 rounded-xl text-[10px] font-black uppercase">Send</button></div></div>`;
-                const chat = document.getElementById('chat'); chat.scrollTop = chat.scrollHeight;
+                const chat = document.getElementById('chat'); if(chat) chat.scrollTop = chat.scrollHeight;
             } else if(v === 'drill') {
                 main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel"><div class="text-main font-black text-[10px] uppercase z-10">Sacrifice<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*22.5}deg)"><div class="segment-line"></div><div class="segment-label" style="transform:rotate(11.25deg)">${t}</div></div>`).join('')}</div><button onclick="spinWheel()" class="bg-[#ff00ff] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase shadow-xl shadow-[#ff00ff]/20">Spin for Mistress</button></div>`;
             } else if(v === 'submission') {
                 main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-main">Evidence Submission</h2><div id="ev-preview" class="evidence-box cursor-pointer" onclick="document.getElementById('file-in').click()"><p class="text-[8px] opacity-40 uppercase">Click to upload collateral</p></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-[#ffcc00]/10 p-4 rounded-xl text-center border border-[#ffcc00]/20"><p class="text-[8px] font-bold uppercase text-[#ffcc00]">Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
                 checkEvidence();
             } else if(v === 'mistresses') {
-                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistresses.map(m => `<div onclick="showSacrifice('${m.name}')" class="master-card"><div><h3 class="font-black italic text-main text-xl tracking-tighter">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div><h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main text-right">Live Sacrifices</h2><div id="ruin-ticker" class="space-y-2"></div>`;
+                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistresses.map(m => `<div onclick="showSacrifice('${m.name}')" class="master-card"><div><h3 class="font-black italic text-xl tracking-tighter text-main">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div><h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main text-right">Live Sacrifices</h2><div id="ruin-ticker" class="space-y-2"></div>`;
                 startSacrificeTicker();
             }
         }
@@ -130,11 +120,11 @@
             setInterval(() => {
                 const user = words[Math.floor(Math.random()*words.length)].toUpperCase().replace(/ /g, "_") + "_" + Math.floor(Math.random()*999);
                 let message = "";
-                if(Math.random() < 0.3) {
+                if(Math.random() < 0.15) {
                     const act = actions[Math.floor(Math.random()*actions.length)];
                     const mistress = mistresses[Math.floor(Math.random()*mistresses.length)].name;
-                    const amt = "$" + (Math.floor(Math.random()*1500)+500);
-                    message = `I ${act} ${mistress}, paid ${amt} for my sacrifice.`;
+                    const amt = "$" + (Math.floor(Math.random()*90)+10);
+                    message = `I ${act} ${mistress}, paid ${amt} for my alignment session.`;
                 } else {
                     message = filler[Math.floor(Math.random()*filler.length)];
                 }
@@ -148,7 +138,7 @@
         function startSacrificeTicker() {
             const t = document.getElementById('ruin-ticker'); if(!t) return;
             setInterval(() => {
-                const amount = (Math.random()*1000+100).toFixed(2);
+                const amount = (Math.random()*100+5).toFixed(2);
                 const div = document.createElement('div');
                 div.className = "bg-white/5 p-3 rounded-xl border-l-2 border-[#ff00ff] flex justify-between";
                 div.innerHTML = `<span class="text-[8px] mono opacity-40 text-main">DOLL_EXTRACTED</span><span class="text-[8px] font-black text-[#ffcc00]">$${amount}</span>`;
@@ -188,14 +178,10 @@
 
         function spinWheel() { const w = document.getElementById('wheel'); const deg = 1800 + Math.random() * 1800; w.style.transform = `rotate(${deg}deg)`; setTimeout(() => { showSacrifice("WHEEL PENALTY"); }, 4100); }
         function showSacrifice(name) { document.getElementById('modal-title').innerText = name + " SACRIFICE"; document.getElementById('modal').classList.remove('hidden'); }
-        
         function confirmSacrifice() { 
-            state.sacrifice += 100; 
+            state.sacrifice += (Math.floor(Math.random()*50)+10); 
             document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
-            
-            // SAVE TO PERSISTENT LEDGER
             localStorage.setItem('silk_sacrifice_' + state.dollId, state.sacrifice);
-            
             document.getElementById('modal').classList.add('hidden'); 
         }
 
@@ -204,8 +190,7 @@
             const chat = document.getElementById('chat');
             const msgHtml = `<div class="text-right"><p class="text-[7px] font-mono text-main">YOU (${state.dollId})</p><p class="text-sm opacity-80 mt-1 italic">${input.value}</p></div>`;
             state.chatHistory += msgHtml;
-            chat.innerHTML += msgHtml;
-            chat.scrollTop = chat.scrollHeight;
+            if(chat) { chat.innerHTML += msgHtml; chat.scrollTop = chat.scrollHeight; }
             input.value = '';
         }
     </script>
