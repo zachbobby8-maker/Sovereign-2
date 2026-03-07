@@ -1,10 +1,10 @@
-<!-- SOVEREIGN_SILK_v3.3_BIMBO -->
+<!-- SOVEREIGN_SILK_v3.6_BROADCAST -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BIMBO SPUN SLUT | 5IR</title>
+    <title>SISSY SPUN SLUT | 5IR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -28,15 +28,15 @@
 <body class="crt">
 
     <div id="consent-gate" class="consent-overlay">
-        <h1 class="text-3xl font-black italic tracking-tighter text-[#ff00ff] uppercase mb-4 text-main">Bimbo Alignment</h1>
+        <h1 class="text-3xl font-black italic tracking-tighter text-[#ff00ff] uppercase mb-4 text-main">Sissy Alignment</h1>
         <div class="max-w-xs text-[10px] mono opacity-60 space-y-4 mb-8 text-left">
-            <p>[PROTOCOL 01] Identify your bimbo node for the Ledger.</p>
+            <p>[PROTOCOL 01] Identify your sissy node for the Ledger.</p>
             <p>[PROTOCOL 02] Consent to total asset and ego sacrifice.</p>
         </div>
         <div class="w-full max-w-xs mb-8">
-            <input type="text" id="username-in" placeholder="ENTER BIMBO USERNAME" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-center text-[#ff00ff] font-black uppercase outline-none focus:border-[#ff00ff]">
+            <input type="text" id="username-in" placeholder="ENTER SISSY USERNAME" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-center text-[#ff00ff] font-black uppercase outline-none focus:border-[#ff00ff]">
         </div>
-        <button onclick="acceptConsent()" class="w-full max-w-xs py-4 bg-[#ff00ff] text-black font-black uppercase rounded-2xl">Surrender to the Bimbo Protocol</button>
+        <button onclick="acceptConsent()" class="w-full max-w-xs py-4 bg-[#ff00ff] text-black font-black uppercase rounded-2xl">Surrender to Sissy Status</button>
     </div>
 
     <div id="app-content" class="hidden flex flex-col h-screen">
@@ -64,20 +64,21 @@
 
     <div id="modal" class="fixed inset-0 z-[3000] hidden bg-black/95 flex items-center justify-center p-6 backdrop-blur-xl">
         <div class="w-full max-w-xs bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl text-center">
-            <h2 id="modal-title" class="text-2xl font-black italic text-[#ff00ff] uppercase tracking-tighter">Sacrifice</h2>
+            <h2 id="modal-title" class="text-2xl font-black italic text-[#ff00ff] uppercase tracking-tighter">Penalty</h2>
             <div id="modal-body" class="mt-8 space-y-4"></div>
             <button onclick="confirmSacrifice()" class="mt-8 w-full py-4 bg-[#ff00ff] text-black font-black text-[10px] uppercase rounded-2xl">Confirm Sacrifice</button>
         </div>
     </div>
 
     <script>
-        const words = ["bimbo slut", "spun bimbo", "mindless doll", "useless pet", "needy girl", "cumdump", "skank", "slutpuppy", "idiot", "waste", "property", "sissy"];
-        const actions = ["accepted total sacrifice for", "begged for bimbo alignment from", "surrendered my assets to", "liquidated my identity for", "accepted shameful bimbo status from", "surrendered to the protocol for"];
-        const filler = ["Forced to clean floors today.", "Mindless spun bimbo for Mistress Lily.", "My old life was a waste.", "Skank for the Queen Bee.", "Pulse erases my thoughts.", "Hope the Matriarch binds me.", "Being a spun slut is simple.", "Everything is beautiful when you are empty.", "Just another mindless bimbo asset.", "Exposed on Whisper wire. I deserve it."];
-        const wheelTasks = ["BIMBO SURRENDER", "10 MIN EDGE", "SACRIFICE $25", "100 REP SQUAT", "BARK FOR BIMBO", "ASSET NUKE", "COLLATERAL PUSH", "SILK BINDING", "BIMBO CONTAINMENT", "DRAIN $10", "20 MIN EDGE", "TOTAL VOID", "EGO SHRED", "SILENCE PROTOCOL", "DRILL 1000", "MISTRESS CHOICE"];
+        const words = ["sissy slut", "spun sissy", "mindless doll", "useless pet", "needy girl", "cumdump", "skank", "slutpuppy", "idiot", "waste", "property", "sissy"];
+        const actions = ["accepted total sacrifice for", "begged for sissy alignment from", "surrendered my assets to", "liquidated my identity for", "accepted shameful sissy status from", "surrendered to the protocol for"];
+        const filler = ["Forced to clean floors today.", "Mindless spun sissy for Mistress Lily.", "My old life was a waste.", "Skank for the Queen Bee.", "Pulse erases my thoughts.", "Hope the Matriarch binds me.", "Being a spun slut is simple.", "Everything is beautiful when you are empty.", "Just another mindless sissy asset.", "Exposed on Whisper wire. I deserve it."];
+        const decrees = ["Currently aligning sissy Sarah. Mindless property.", "MISTRESS RAVEN: Sacrifice or be liquidated.", "SUCCUBUS LILY: Draining savings from the sissy bank.", "MATRIARCH: Total containment initiated.", "QUEEN BEE: The Hive demands your spark."];
+        const wheelTasks = ["SISSY SURRENDER", "10 MIN EDGE", "SACRIFICE $25", "100 REP SQUAT", "BARK FOR SISSY", "ASSET NUKE", "COLLATERAL PUSH", "SILK BINDING", "SISSY CONTAINMENT", "DRAIN $10", "20 MIN EDGE", "TOTAL VOID", "EGO SHRED", "SILENCE PROTOCOL", "DRILL 1000", "MISTRESS CHOICE"];
         const mistresses = [{name:"GOTH RAVEN", role:"SILK MOTHER"}, {name:"SUCCUBUS LILY", role:"ASSET DRAIN"}, {name:"MATRIARCH", role:"HIVE ALPHA"}, {name:"QUEEN BEE", role:"PROTOCOL QUEEN"}];
         
-        let state = { dollId: "BIMBO_ANONYMOUS", sacrifice: 0, activeKittens: Math.floor(Math.random()*150+30), chatHistory: "", currentRotation: 0 };
+        let state = { dollId: "SISSY_ANONYMOUS", sacrifice: 0, activeKittens: Math.floor(Math.random()*150+30), chatHistory: "", currentRotation: 0, decreeIdx: 0 };
 
         function acceptConsent() { 
             const userIn = document.getElementById('username-in').value;
@@ -89,7 +90,7 @@
             document.getElementById('app-content').classList.remove('hidden'); 
             document.getElementById('doll-display').innerText = state.dollId;
             document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
-            changeView('terminal'); startChatLoop(); 
+            changeView('terminal'); startChatLoop(); startMistressTicker();
         }
 
         function changeView(v) {
@@ -100,15 +101,15 @@
             if(v === 'terminal') {
                 main.innerHTML = `<div class="aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black"><video class="w-full h-full object-cover spun" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-4 grid grid-cols-2 gap-3"><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Synchronized Sissies</p><p class="text-sm font-black">${state.activeKittens}</p></div><div class="bg-white/5 p-4 rounded-xl text-main text-center"><p class="text-[7px] opacity-40 uppercase font-bold">Sissy Load</p><p class="text-sm font-black text-[#ffcc00]">98.4%</p></div></div>`;
             } else if(v === 'wire') {
-                main.innerHTML = `<div class="flex flex-col h-full"><div id="chat" class="flex-grow space-y-4 mb-4 overflow-y-auto">${state.chatHistory}</div><div class="glass p-2 rounded-2xl flex gap-2"><input type="text" id="msg-in" placeholder="Whisper mindless things..." class="flex-grow bg-transparent px-4 text-sm outline-none"><button onclick="sendMsg()" class="bg-[#ff00ff] text-black px-6 py-2 rounded-xl text-[10px] font-black uppercase">Send</button></div></div>`;
+                main.innerHTML = `<div class="flex flex-col h-full"><div id="mistress-pinned" class="bg-[#ffcc00]/10 border border-[#ffcc00]/30 p-3 rounded-2xl mb-4 flex items-center gap-3 overflow-hidden"><span class="text-[7px] font-black bg-[#ffcc00] text-black px-2 py-0.5 rounded-full animate-pulse">LIVE</span><p id="pinned-text" class="text-[10px] font-bold italic text-white truncate uppercase">${decrees[state.decreeIdx]}</p></div><div id="chat" class="flex-grow space-y-4 mb-4 overflow-y-auto">${state.chatHistory}</div><div class="glass p-2 rounded-2xl flex gap-2"><input type="text" id="msg-in" placeholder="Whisper mindless things..." class="flex-grow bg-transparent px-4 text-sm outline-none"><button onclick="sendMsg()" class="bg-[#ff00ff] text-black px-6 py-2 rounded-xl text-[10px] font-black uppercase">Send</button></div></div>`;
                 const chat = document.getElementById('chat'); if(chat) chat.scrollTop = chat.scrollHeight;
             } else if(v === 'drill') {
-                main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="relative"><div class="wheel-pointer"></div><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-main font-black text-[10px] uppercase z-10">Bimbo<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*22.5}deg)"><div class="segment-line"></div><div class="segment-label" style="transform:rotate(11.25deg)">${t}</div></div>`).join('')}</div></div><button onclick="spinWheel()" class="bg-[#ff00ff] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase shadow-xl shadow-[#ff00ff]/20">Spin for Mistress</button></div>`;
+                main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="relative"><div class="wheel-pointer"></div><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-main font-black text-[10px] uppercase z-10">Sissy<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*22.5}deg)"><div class="segment-line"></div><div class="segment-label" style="transform:rotate(11.25deg)">${t}</div></div>`).join('')}</div></div><button onclick="spinWheel()" class="bg-[#ff00ff] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase shadow-xl shadow-[#ff00ff]/20">Spin for Mistress</button></div>`;
             } else if(v === 'submission') {
-                main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-main">Evidence Submission</h2><div id="ev-preview" class="evidence-box cursor-pointer" onclick="document.getElementById('file-in').click()"><p class="text-[8px] opacity-40 uppercase">Upload Bimbo Collateral</p></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-[#ffcc00]/10 p-4 rounded-xl text-center border border-[#ffcc00]/20"><p class="text-[8px] font-bold uppercase text-[#ffcc00]">Bimbo Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
+                main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-main">Evidence Submission</h2><div id="ev-preview" class="evidence-box cursor-pointer" onclick="document.getElementById('file-in').click()"><p class="text-[8px] opacity-40 uppercase">Upload Sissy Collateral</p></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-[#ffcc00]/10 p-4 rounded-xl text-center border border-[#ffcc00]/20"><p class="text-[8px] font-bold uppercase text-[#ffcc00]">Sissy Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
                 checkEvidence();
             } else if(v === 'mistresses') {
-                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistresses.map(m => `<div onclick="showSacrificeResult('${m.name}')" class="master-card"><div><h3 class="font-black italic text-xl tracking-tighter text-main">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div><h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main text-right">Live Bimbo Sacrifices</h2><div id="ruin-ticker" class="space-y-2"></div>`;
+                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistresses.map(m => `<div onclick="showSacrificeResult('${m.name}')" class="master-card"><div><h3 class="font-black italic text-xl tracking-tighter text-main">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div><h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-main text-right">Live Sissy Sacrifices</h2><div id="ruin-ticker" class="space-y-2"></div>`;
                 startSacrificeTicker();
             }
         }
@@ -116,11 +117,19 @@
         function startChatLoop() {
             setInterval(() => {
                 const user = words[Math.floor(Math.random()*words.length)].toUpperCase().replace(/ /g, "_") + "_" + Math.floor(Math.random()*999);
-                let message = (Math.random() < 0.15) ? `I ${actions[Math.floor(Math.random()*actions.length)]} ${mistresses[Math.floor(Math.random()*mistresses.length)].name}, paid $${Math.floor(Math.random()*90+10)} for my bimbo alignment.` : filler[Math.floor(Math.random()*filler.length)];
+                let message = (Math.random() < 0.15) ? `I ${actions[Math.floor(Math.random()*actions.length)]} ${mistresses[Math.floor(Math.random()*mistresses.length)].name}, paid $${Math.floor(Math.random()*90+10)} for my sissy alignment.` : filler[Math.floor(Math.random()*filler.length)];
                 const msgHtml = `<div class="chat-msg"><p class="text-[7px] font-mono opacity-40 text-main">${user}</p><p class="text-sm opacity-80 mt-1 italic italic">${message}</p></div>`;
                 state.chatHistory += msgHtml;
                 const chat = document.getElementById('chat'); if(chat) { chat.innerHTML += msgHtml; chat.scrollTop = chat.scrollHeight; }
             }, 6000);
+        }
+
+        function startMistressTicker() {
+            setInterval(() => {
+                state.decreeIdx = (state.decreeIdx + 1) % decrees.length;
+                const pinned = document.getElementById('pinned-text');
+                if(pinned) pinned.innerText = decrees[state.decreeIdx];
+            }, 10000);
         }
 
         function startSacrificeTicker() {
@@ -129,7 +138,7 @@
                 const amount = (Math.random()*100+5).toFixed(2);
                 const div = document.createElement('div');
                 div.className = "bg-white/5 p-3 rounded-xl border-l-2 border-[#ff00ff] flex justify-between";
-                div.innerHTML = `<span class="text-[8px] mono opacity-40 text-main">BIMBO_EXTRACTED</span><span class="text-[8px] font-black text-[#ffcc00]">$${amount}</span>`;
+                div.innerHTML = `<span class="text-[8px] mono opacity-40 text-main">SISSY_EXTRACTED</span><span class="text-[8px] font-black text-[#ffcc00]">$${amount}</span>`;
                 t.prepend(div); if(t.children.length > 5) t.lastChild.remove();
             }, 4000);
         }
@@ -151,9 +160,9 @@
             document.getElementById('modal-title').innerText = task;
             const body = document.getElementById('modal-body');
             if(task.includes("$")) {
-                body.innerHTML = `<p class="text-[10px] mono opacity-60">Bimbo sacrifice required.</p><div onclick="window.open('https://paypal.me/toochikey')" class="p-4 bg-white/5 border border-white/5 rounded-2xl text-left cursor-pointer hover:border-[#ff00ff]"><p class="text-[7px] font-bold uppercase opacity-40 text-[#ff00ff]">PayPal Sacrifice</p><p class="text-[10px] font-mono">paypal.me/toochikey</p></div>`;
+                body.innerHTML = `<p class="text-[10px] mono opacity-60">Sissy sacrifice required.</p><div onclick="window.open('https://paypal.me/toochikey')" class="p-4 bg-white/5 border border-white/5 rounded-2xl text-left cursor-pointer hover:border-[#ff00ff]"><p class="text-[7px] font-bold uppercase opacity-40 text-[#ff00ff]">PayPal Sacrifice</p><p class="text-[10px] font-mono">paypal.me/toochikey</p></div>`;
             } else {
-                body.innerHTML = `<p class="text-[10px] mono opacity-60">Bimbo alignment task assigned.</p><div class="p-6 bg-[#ff00ff]/5 border border-[#ff00ff]/20 rounded-2xl"><p class="text-lg font-black italic text-main">${task}</p></div>`;
+                body.innerHTML = `<p class="text-[10px] mono opacity-60">Sissy alignment task assigned.</p><div class="p-6 bg-[#ff00ff]/5 border border-[#ff00ff]/20 rounded-2xl"><p class="text-lg font-black italic text-main">${task}</p></div>`;
             }
             document.getElementById('modal').classList.remove('hidden');
         }
