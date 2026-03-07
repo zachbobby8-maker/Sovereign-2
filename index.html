@@ -1,4 +1,4 @@
-<!-- SOVEREIGN_SILK_v2.9_PERSISTENT -->
+<!-- SOVEREIGN_SILK_v3.0_IDENTITY_LOCK -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +29,11 @@
     <div id="consent-gate" class="consent-overlay">
         <h1 class="text-3xl font-black italic tracking-tighter text-[#ff00ff] uppercase mb-4 text-main">The Silk Alignment</h1>
         <div class="max-w-xs text-[10px] mono opacity-60 space-y-4 mb-8 text-left">
-            <p>[HIVE 01] I surrender my identity to the 5IR Hive.</p>
-            <p>[HIVE 02] I consent to the total sacrifice of assets and ego.</p>
+            <p>[HIVE 01] Identify your identity for the Hive Ledger.</p>
+            <p>[HIVE 02] Consent to the total sacrifice of assets and ego.</p>
+        </div>
+        <div class="w-full max-w-xs mb-8">
+            <input type="text" id="username-in" placeholder="ENTER DOLL USERNAME" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-center text-[#ff00ff] font-black uppercase outline-none focus:border-[#ff00ff]">
         </div>
         <button onclick="acceptConsent()" class="w-full max-w-xs py-4 bg-[#ff00ff] text-black font-black uppercase rounded-2xl">Surrender to the Hive</button>
     </div>
@@ -77,13 +80,29 @@
         const mistresses = [{name:"GOTH RAVEN", role:"SILK MOTHER"}, {name:"SUCCUBUS LILY", role:"ASSET DRAIN"}, {name:"MATRIARCH", role:"HIVE ALPHA"}, {name:"QUEEN BEE", role:"PROTOCOL QUEEN"}];
         
         let state = { 
-            dollId: "DOLL_" + Math.floor(Math.random()*899+100), 
+            dollId: "DOLL_ANONYMOUS", 
             sacrifice: 0, 
             activeKittens: Math.floor(Math.random()*150+30),
             chatHistory: ""
         };
 
-        function acceptConsent() { document.getElementById('consent-gate').classList.add('hidden'); document.getElementById('app-content').classList.remove('hidden'); document.getElementById('doll-display').innerText = state.dollId; changeView('terminal'); startChatLoop(); }
+        function acceptConsent() { 
+            const userIn = document.getElementById('username-in').value;
+            if(!userIn) { alert("IDENTIFICATION REQUIRED"); return; }
+            state.dollId = userIn.toUpperCase().replace(/ /g, "_");
+            
+            // LOAD PERSISTENT SACRIFICE
+            const savedSac = localStorage.getItem('silk_sacrifice_' + state.dollId);
+            state.sacrifice = savedSac ? parseFloat(savedSac) : 0;
+            
+            document.getElementById('consent-gate').classList.add('hidden'); 
+            document.getElementById('app-content').classList.remove('hidden'); 
+            document.getElementById('doll-display').innerText = state.dollId;
+            document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
+            
+            changeView('terminal'); 
+            startChatLoop(); 
+        }
 
         function changeView(v) {
             const main = document.getElementById('main-view');
@@ -169,17 +188,26 @@
 
         function spinWheel() { const w = document.getElementById('wheel'); const deg = 1800 + Math.random() * 1800; w.style.transform = `rotate(${deg}deg)`; setTimeout(() => { showSacrifice("WHEEL PENALTY"); }, 4100); }
         function showSacrifice(name) { document.getElementById('modal-title').innerText = name + " SACRIFICE"; document.getElementById('modal').classList.remove('hidden'); }
-        function confirmSacrifice() { state.sacrifice += 100; document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2); document.getElementById('modal').classList.add('hidden'); }
+        
+        function confirmSacrifice() { 
+            state.sacrifice += 100; 
+            document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
+            
+            // SAVE TO PERSISTENT LEDGER
+            localStorage.setItem('silk_sacrifice_' + state.dollId, state.sacrifice);
+            
+            document.getElementById('modal').classList.add('hidden'); 
+        }
+
         function sendMsg() { 
             const input = document.getElementById('msg-in'); if(!input.value) return;
             const chat = document.getElementById('chat');
-            const msgHtml = `<div class="text-right"><p class="text-[7px] font-mono text-main">YOU</p><p class="text-sm opacity-80 mt-1 italic">${input.value}</p></div>`;
+            const msgHtml = `<div class="text-right"><p class="text-[7px] font-mono text-main">YOU (${state.dollId})</p><p class="text-sm opacity-80 mt-1 italic">${input.value}</p></div>`;
             state.chatHistory += msgHtml;
             chat.innerHTML += msgHtml;
             chat.scrollTop = chat.scrollHeight;
             input.value = '';
         }
-        window.onload = () => {};
     </script>
 </body>
 </html>
