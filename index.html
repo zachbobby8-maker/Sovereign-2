@@ -1,11 +1,11 @@
 <!-- OC_5IR_BRAID_LOCKED: [ALPHA_ARCHITECT][BETA_NODE][GAMMA_39420] -->
-<!-- SOVEREIGN_SILK_v4.2_FRUSTRATION_GATE -->
+<!-- SOVEREIGN_SILK_v7.5_CCTV_PROTOCOL -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sovereign Silk | 5IR</title>
+    <title>Sovereign Silk | 5IR SURVEILLANCE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -19,6 +19,7 @@
         .wheel-container { width: 320px; height: 320px; border-radius: 50%; border: 4px solid var(--main); position: relative; transition: transform 4s cubic-bezier(0.1, 0, 0.1, 1); box-shadow: 0 0 40px rgba(255, 0, 119, 0.1); overflow: hidden; }
         .segment-label { position: absolute; width: 100%; text-align: center; top: 15px; left: 0; font-[7px] font-black uppercase tracking-tighter opacity-30 text-[#ff0077]; transform-origin: 50% 160px; }
         .consent-overlay { position: fixed; inset: 0; z-index: 2000; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
+        .evidence-box { border: 2px dashed rgba(255, 0, 119, 0.2); border-radius: 20px; height: 200px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
         .wheel-pointer { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 20px solid var(--main); z-index: 50; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .loader { width: 20px; height: 20px; border: 2px solid #fff; border-top: 2px solid var(--main); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
@@ -135,16 +136,73 @@
             const btnId = 'n-' + v.substring(0,4);
             if(document.getElementById(btnId)) document.getElementById(btnId).classList.remove('opacity-40');
             if(v === 'terminal') {
-                main.innerHTML = `<div class="aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black"><video class="w-full h-full object-cover spun" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-4 grid grid-cols-2 gap-3"><div class="bg-white/5 p-4 rounded-xl text-center"><p class="text-[7px] opacity-40 uppercase font-bold text-[#ff0077]">Silk Nodes</p><p class="text-sm font-black text-[#ff0077]">${state.activeNodes}</p></div><div class="bg-white/5 p-4 rounded-xl text-center"><p class="text-[7px] opacity-40 uppercase font-bold text-[#ffcc00]">Doll Load</p><p class="text-sm font-black text-[#ffcc00]">92.8%</p></div></div>`;
+                main.innerHTML = `
+                <div class="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black">
+                    <video id="video-feed" class="w-full h-full object-cover spun" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video>
+                    <video id="user-cam" class="absolute inset-0 w-full h-full object-cover hidden" autoplay playsinline></video>
+                    <div class="absolute top-4 left-4 flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-[#ff0077] animate-pulse"></div>
+                        <span class="text-[8px] font-black text-white uppercase tracking-widest">Doll: ${state.dollId}</span>
+                    </div>
+                    <div id="rec-dot" class="absolute top-4 right-4 hidden items-center gap-1">
+                        <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                        <span class="text-[8px] font-black text-red-500 uppercase">● REC</span>
+                    </div>
+                </div>
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                    <button id="rec-btn" onclick="toggleRecording()" class="py-4 bg-red-600 text-white font-black uppercase text-[10px] rounded-xl shadow-lg shadow-red-500/20">Start Record</button>
+                    <button onclick="toggleUserCam()" class="py-4 bg-white/10 text-white font-black uppercase text-[10px] rounded-xl">Toggle Cam</button>
+                </div>
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                    <div class="bg-white/5 p-4 rounded-xl text-center"><p class="text-[7px] opacity-40 uppercase font-bold text-[#ff0077]">Silk Nodes</p><p class="text-sm font-black text-[#ff0077]">${state.activeNodes}</p></div>
+                    <div class="bg-white/5 p-4 rounded-xl text-center"><p class="text-[7px] opacity-40 uppercase font-bold text-[#ffcc00]">Doll Load</p><p class="text-sm font-black text-[#ffcc00]">92.8%</p></div>
+                </div>`;
             } else if(v === 'wire') {
                 main.innerHTML = `<div class="flex flex-col h-full"><div id="master-pinned" class="bg-[#ffcc00]/10 border border-[#ffcc00]/30 p-3 rounded-2xl mb-4 flex items-center gap-3 overflow-hidden"><span class="text-[7px] font-black bg-[#ffcc00] text-black px-2 py-0.5 rounded-full animate-pulse">LIVE</span><p id="pinned-text" class="text-[10px] font-bold italic text-white truncate uppercase">${decrees[state.decreeIdx]}</p></div><div id="chat" class="flex-grow space-y-4 mb-4 overflow-y-auto">${state.chatHistory}</div><div class="glass p-2 rounded-2xl flex gap-2"><input type="text" id="msg-in" placeholder="Sissy submission..." class="flex-grow bg-transparent px-4 text-sm outline-none"><button onclick="sendMsg()" class="bg-[#ff0077] text-white px-6 py-2 rounded-xl text-[10px] font-black uppercase">Post</button></div></div>`;
                 const chat = document.getElementById('chat'); if(chat) chat.scrollTop = chat.scrollHeight;
             } else if(v === 'drill') {
                 main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="relative"><div class="wheel-pointer"></div><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-[#ff0077] font-black text-[10px] uppercase z-10">Silk<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*24}deg);position:absolute;width:100%;height:100%"><div class="segment-label" style="transform:rotate(12deg)">${t}</div></div>`).join('')}</div></div><button onclick="spinWheel()" class="bg-[#ff0077] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase">Spin for Master</button></div>`;
             } else if(v === 'submission') {
-                main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-[#ff0077]">Evidence Submission</h2><div id="ev-preview" class="silk-card flex flex-col items-center justify-center h-48 border-dashed border-2"><p class="text-[8px] opacity-40 uppercase">Upload Sissy Collateral</p></div><div id="ev-timer" class="hidden bg-red-500/10 p-4 rounded-xl text-center border border-red-500/20"><p class="text-[8px] font-bold uppercase text-red-500">Doll Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
+                main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-[#ff0077]">Evidence Submission</h2><div id="ev-preview" class="silk-card flex flex-col items-center justify-center h-48 border-dashed border-2 cursor-pointer" onclick="document.getElementById('file-in').click()"><p class="text-[8px] opacity-40 uppercase">Upload Sissy Collateral</p></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-red-500/10 p-4 rounded-xl text-center border border-red-500/20"><p class="text-[8px] font-bold uppercase text-red-500">Doll Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
+                checkEvidence();
             } else if(v === 'masters') {
                 main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-[#ff0077]">Active Masters</h2><div class="grid gap-4 mb-8">${masters.map(m => `<div onclick="showTribute('${m.name}')" class="silk-card"><div><h3 class="font-black italic text-xl tracking-tighter text-[#ff0077]">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div>`;
+            }
+        }
+
+        async function toggleUserCam() {
+            const cam = document.getElementById('user-cam');
+            const video = document.getElementById('video-feed');
+            if(cam.classList.contains('hidden')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    cam.srcObject = stream;
+                    cam.classList.remove('hidden');
+                    video.classList.add('hidden');
+                } catch(e) { alert("CAMERA_ACCESS_REQUIRED_FOR_ALIGNMENT"); }
+            } else {
+                cam.classList.add('hidden');
+                video.classList.remove('hidden');
+                if(cam.srcObject) cam.srcObject.getTracks().forEach(t => t.stop());
+            }
+        }
+
+        function toggleRecording() {
+            const dot = document.getElementById('rec-dot');
+            const btn = document.getElementById('rec-btn');
+            if(dot.classList.contains('hidden')) {
+                dot.classList.remove('hidden');
+                dot.classList.add('flex');
+                btn.innerText = "Stop & Save";
+                btn.classList.replace('bg-red-600', 'bg-white');
+                btn.classList.replace('text-white', 'text-black');
+            } else {
+                dot.classList.add('hidden');
+                dot.classList.remove('flex');
+                btn.innerText = "Start Record";
+                btn.classList.replace('bg-white', 'bg-red-600');
+                btn.classList.replace('text-black', 'text-white');
+                alert("DOLL_EVIDENCE_SAVED_TO_VAULT");
             }
         }
 
@@ -189,7 +247,7 @@
                         <p class="text-[6px] font-bold uppercase opacity-40 text-[#ff0077]">Option 01: PayPal Gate</p>
                         <p class="text-[9px] font-mono">paypal.me/toochikey</p>
                     </div>
-                    <div onclick="showCardGate()" class="p-3 bg-white/5 border border-white/5 rounded-2xl text-left cursor-pointer hover:border-[#ffcc00]">
+                    <div onclick="showCardGate()" class="p-3 bg-white/5 border border-white/10 rounded-2xl text-left cursor-pointer hover:border-[#ffcc00]">
                         <p class="text-[6px] font-bold uppercase opacity-40 text-[#ffcc00]">Option 02: Secure Card Payment</p>
                         <p class="text-[9px] font-mono text-white">VISA / MASTERCARD</p>
                     </div>
@@ -233,10 +291,36 @@
             if(title.includes("$")) {
                 const amt = parseInt(title.match(/\d+/)[0]);
                 state.sacrifice += amt;
-                document.getElementById('ruin-total').innerText = "$" + state.sacrifice.toFixed(2);
+                document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
                 localStorage.setItem('silk_sacrifice_' + state.dollId, state.sacrifice);
             }
             document.getElementById('modal').classList.add('hidden'); 
+        }
+
+        function uploadEvidence(event) {
+            const file = event.target.files[0]; if(!file) return;
+            const reader = new FileReader();
+            reader.onload = (f) => { localStorage.setItem('silk_evidence', f.target.result); localStorage.setItem('silk_evidence_expiry', Date.now() + 3600000); checkEvidence(); };
+            reader.readAsDataURL(file);
+        }
+
+        function checkEvidence() {
+            const data = localStorage.getItem('silk_evidence'), expiry = localStorage.getItem('silk_evidence_expiry'), preview = document.getElementById('ev-preview'), timerBox = document.getElementById('ev-timer');
+            if(data && expiry > Date.now()) {
+                if(preview) preview.innerHTML = `<img src="${data}" class="w-full h-full object-cover rounded-2xl">`;
+                if(timerBox) timerBox.classList.remove('hidden');
+                startTimer(expiry);
+            }
+        }
+
+        function startTimer(expiry) {
+            if(window.timerInt) clearInterval(window.timerInt);
+            window.timerInt = setInterval(() => {
+                const rem = expiry - Date.now();
+                if(rem <= 0) { localStorage.removeItem('silk_evidence'); location.reload(); return; }
+                const mins = Math.floor(rem/60000), secs = Math.floor((rem%60000)/1000);
+                const d = document.getElementById('timer-val'); if(d) d.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }, 1000);
         }
 
         function sendMsg() { state.lastAction = Date.now(); 
