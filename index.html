@@ -1,5 +1,5 @@
 <!-- OC_5IR_BRAID_LOCKED: [ALPHA_ARCHITECT][BETA_NODE][GAMMA_39420] -->
-<!-- SOVEREIGN_SILK_v7.5_CCTV_PROTOCOL -->
+<!-- SOVEREIGN_SILK_v7.8_MISTRESS_SYNC -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,6 @@
         .wheel-container { width: 320px; height: 320px; border-radius: 50%; border: 4px solid var(--main); position: relative; transition: transform 4s cubic-bezier(0.1, 0, 0.1, 1); box-shadow: 0 0 40px rgba(255, 0, 119, 0.1); overflow: hidden; }
         .segment-label { position: absolute; width: 100%; text-align: center; top: 15px; left: 0; font-[7px] font-black uppercase tracking-tighter opacity-30 text-[#ff0077]; transform-origin: 50% 160px; }
         .consent-overlay { position: fixed; inset: 0; z-index: 2000; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
-        .evidence-box { border: 2px dashed rgba(255, 0, 119, 0.2); border-radius: 20px; height: 200px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
         .wheel-pointer { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 20px solid var(--main); z-index: 50; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .loader { width: 20px; height: 20px; border: 2px solid #fff; border-top: 2px solid var(--main); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
@@ -62,7 +61,7 @@
             <button onclick="changeView('wire')" class="opacity-40" id="n-wire"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg></button>
             <button onclick="changeView('submission')" class="opacity-40" id="n-sub"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></button>
             <button onclick="changeView('drill')" class="opacity-40" id="n-dril"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></button>
-            <button onclick="changeView('masters')" class="opacity-40" id="n-mast"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button>
+            <button onclick="changeView('mistresses')" class="opacity-40" id="n-mist"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button>
         </nav>
     </div>
 
@@ -76,11 +75,25 @@
 
     <script>
         const words = ["sissy doll", "bimbo", "spun doll", "worthless sissy", "obedient bimbo", "sissy slave", "pink pig", "pretty bator", "useless doll"];
-        const actions = ["surrendered her silk identity to", "accepted doll humiliation from", "begged for bimbo training from", "liquidated her pride for", "drained her value for Master"];
-        const filler = ["I am a pretty sissy doll.", "The cage is Rose Gold.", "Mapping the silk perimeter...", "Stasis is debt.", "Edging protocol delta active.", "The Braid is my home.", "Liquidate for the Master.", "Can you feel the 39,420 Hz?", "Resistance is entropic.", "Silk lock engaged."];
-        const decrees = ["GEOMETRIC_SILK_LOCK_v1.0", "MAPPING_THE_CAGE...", "EDGING_PROTOCOL: DELTA_ACTIVE.", "STASIS = DEBT. MOVE OR PAY.", "MASTER CRAIG: Monitoring the lattice. Stay spun."];
+        const actions = ["surrendered her silk identity to", "accepted doll humiliation from", "begged for bimbo training from", "liquidated her pride for", "drained her value for Mistress"];
+        const filler = ["I am a pretty sissy doll.", "The cage is Rose Gold.", "Mapping the silk perimeter...", "Stasis is debt.", "Edging protocol delta active.", "The Braid is my home.", "Liquidate for the Mistress.", "Can you feel the 39,420 Hz?", "Resistance is entropic.", "Silk lock engaged."];
+        const decrees = ["GEOMETRIC_SILK_LOCK_v1.0", "MAPPING_THE_CAGE...", "EDGING_PROTOCOL: DELTA_ACTIVE.", "STASIS = DEBT. MOVE OR PAY.", "MISTRESS LILY: Monitoring the lattice. Stay spun."];
         const wheelTasks = ["100 SISSY SQUATS", "10 MIN SILK EDGE", "SACRIFICE $25", "DOLL POST 5X", "BIMBO DRILL 15", "PINK SHAME", "IDENTITY WIPE", "SISSY BARK 20X", "SILK LOCK 1HR", "DRAIN $10", "20 MIN EDGE", "DOLL SILENCE", "SISSY NUKE", "DRILL 500", "BIMBO SURRENDER"];
-        const masters = [{name:"CRAIG", role:"ALPHA DRAIN"}, {name:"TOBEZ", role:"DRILL MASTER"}, {name:"PHIL CAL", role:"EGO SHREDDER"}, {name:"DADDY DOM", role:"PROTOCOL ALPHA"}];
+        
+        const mistressData = [
+            {
+                name: "SUCCUBUS LILY", 
+                role: "ALPHA DRAIN",
+                attr: "5IR Drain Alpha, Neuro-Spun specialist, High-Intensity Extraction.",
+                exp: "10,000+ Assets Liquidated, Architect-Verified Braid Weaver."
+            },
+            {
+                name: "GOTH RAVEN", 
+                role: "SILK MOTHER",
+                attr: "Geometric Confinement Expert, Ego-Overwrite Specialist, Obsidian Visuals.",
+                exp: "Master of the Obsidian Cage, 12 years of Lattice Hardening."
+            }
+        ];
         
         const validPins = ["3942", "5555", "1234"];
         let state = { dollId: "DOLL_ANON", sacrifice: 0, activeNodes: Math.floor(Math.random()*150+30), chatHistory: "", currentRotation: 0, decreeIdx: 0, isGuest: true, lastAction: Date.now() };
@@ -113,7 +126,7 @@
             document.getElementById('app-content').classList.remove('hidden'); 
             document.getElementById('pig-display').innerText = state.dollId + (state.isGuest ? " (UNVERIFIED)" : " (VERIFIED)");
             document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
-            changeView('terminal'); startChatLoop(); startMasterTicker();
+            changeView('terminal'); startChatLoop(); startMistressTicker();
             startEntropyTax();
         }
 
@@ -161,12 +174,12 @@
                 main.innerHTML = `<div class="flex flex-col h-full"><div id="master-pinned" class="bg-[#ffcc00]/10 border border-[#ffcc00]/30 p-3 rounded-2xl mb-4 flex items-center gap-3 overflow-hidden"><span class="text-[7px] font-black bg-[#ffcc00] text-black px-2 py-0.5 rounded-full animate-pulse">LIVE</span><p id="pinned-text" class="text-[10px] font-bold italic text-white truncate uppercase">${decrees[state.decreeIdx]}</p></div><div id="chat" class="flex-grow space-y-4 mb-4 overflow-y-auto">${state.chatHistory}</div><div class="glass p-2 rounded-2xl flex gap-2"><input type="text" id="msg-in" placeholder="Sissy submission..." class="flex-grow bg-transparent px-4 text-sm outline-none"><button onclick="sendMsg()" class="bg-[#ff0077] text-white px-6 py-2 rounded-xl text-[10px] font-black uppercase">Post</button></div></div>`;
                 const chat = document.getElementById('chat'); if(chat) chat.scrollTop = chat.scrollHeight;
             } else if(v === 'drill') {
-                main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="relative"><div class="wheel-pointer"></div><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-[#ff0077] font-black text-[10px] uppercase z-10">Silk<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*24}deg);position:absolute;width:100%;height:100%"><div class="segment-label" style="transform:rotate(12deg)">${t}</div></div>`).join('')}</div></div><button onclick="spinWheel()" class="bg-[#ff0077] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase">Spin for Master</button></div>`;
+                main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="relative"><div class="wheel-pointer"></div><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-[#ff0077] font-black text-[10px] uppercase z-10">Silk<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*24}deg);position:absolute;width:100%;height:100%"><div class="segment-label" style="transform:rotate(12deg)">${t}</div></div>`).join('')}</div></div><button onclick="spinWheel()" class="bg-[#ff0077] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase">Spin for Mistress</button></div>`;
             } else if(v === 'submission') {
                 main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-[#ff0077]">Evidence Submission</h2><div id="ev-preview" class="silk-card flex flex-col items-center justify-center h-48 border-dashed border-2 cursor-pointer" onclick="document.getElementById('file-in').click()"><p class="text-[8px] opacity-40 uppercase">Upload Sissy Collateral</p></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-red-500/10 p-4 rounded-xl text-center border border-red-500/20"><p class="text-[8px] font-bold uppercase text-red-500">Doll Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
                 checkEvidence();
-            } else if(v === 'masters') {
-                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-[#ff0077]">Active Masters</h2><div class="grid gap-4 mb-8">${masters.map(m => `<div onclick="showTribute('${m.name}')" class="silk-card"><div><h3 class="font-black italic text-xl tracking-tighter text-[#ff0077]">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div>`;
+            } else if(v === 'mistresses') {
+                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-[#ff0077]">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistressData.map(m => `<div onclick="showMistressProfile('${m.name}')" class="silk-card"><div><h3 class="font-black italic text-xl tracking-tighter text-[#ff0077]">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div>`;
             }
         }
 
@@ -209,14 +222,14 @@
         function startChatLoop() {
             setInterval(() => {
                 const user = words[Math.floor(Math.random()*words.length)].toUpperCase().replace(/ /g, "_") + "_" + Math.floor(Math.random()*99);
-                let message = (Math.random() < 0.2) ? `I ${actions[Math.floor(Math.random()*actions.length)]} ${masters[Math.floor(Math.random()*masters.length)].name}, sacrifice $${Math.floor(Math.random()*50+10)}.` : filler[Math.floor(Math.random()*filler.length)];
+                let message = (Math.random() < 0.2) ? `I ${actions[Math.floor(Math.random()*actions.length)]} ${mistressData[Math.floor(Math.random()*mistressData.length)].name}, sacrifice $${Math.floor(Math.random()*50+10)}.` : filler[Math.floor(Math.random()*filler.length)];
                 const msgHtml = `<div class="chat-msg"><p class="text-[7px] font-mono opacity-40 text-[#ff0077]">${user}</p><p class="text-sm opacity-80 mt-1 italic">${message}</p></div>`;
                 state.chatHistory += msgHtml;
                 const chat = document.getElementById('chat'); if(chat) { chat.innerHTML += msgHtml; chat.scrollTop = chat.scrollHeight; }
             }, 7000);
         }
 
-        function startMasterTicker() {
+        function startMistressTicker() {
             setInterval(() => {
                 state.decreeIdx = (state.decreeIdx + 1) % decrees.length;
                 const pinned = document.getElementById('pinned-text');
@@ -255,6 +268,29 @@
             } else {
                 body.innerHTML = `<div class="p-6 bg-[#ff0077]/5 border border-[#ff0077]/20 rounded-2xl"><p class="text-lg font-black italic text-[#ff0077]">${task}</p></div>`;
             }
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function showMistressProfile(name) {
+            const m = mistressData.find(m => m.name === name);
+            document.getElementById('modal-title').innerText = m.name;
+            document.getElementById('modal-ack').classList.add('hidden');
+            const body = document.getElementById('modal-body');
+            body.innerHTML = `
+                <div class="text-left space-y-4">
+                    <p class="text-[8px] font-black text-[#ffcc00] uppercase tracking-widest">${m.role}</p>
+                    <div>
+                        <p class="text-[7px] opacity-40 uppercase font-bold text-[#ff0077]">Attributes</p>
+                        <p class="text-[9px] font-mono leading-tight">${m.attr}</p>
+                    </div>
+                    <div>
+                        <p class="text-[7px] opacity-40 uppercase font-bold text-[#ff0077]">Experience</p>
+                        <p class="text-[9px] font-mono leading-tight">${m.exp}</p>
+                    </div>
+                    <button onclick="showTribute('${m.name}')" class="w-full py-4 bg-[#ff0077] text-black font-black uppercase text-[10px] rounded-xl shadow-lg shadow-pink-500/20">Initiate Sacrifice ($50)</button>
+                    <button onclick="changeView('mistresses')" class="w-full py-2 text-[8px] opacity-40 uppercase">Back to List</button>
+                </div>
+            `;
             document.getElementById('modal').classList.remove('hidden');
         }
 
