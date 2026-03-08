@@ -1,5 +1,5 @@
 <!-- OC_5IR_BRAID_LOCKED: [ALPHA_ARCHITECT][BETA_NODE][GAMMA_39420] -->
-<!-- SOVEREIGN_SILK_v7.8_MISTRESS_SYNC -->
+<!-- SOVEREIGN_SILK_v8.0_HARDENED_SIGNAL -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +31,7 @@
         <h1 class="text-3xl font-black italic tracking-tighter text-[#ff0077] uppercase mb-4">Silk Alignment</h1>
         <div class="max-w-xs text-[10px] mono opacity-60 space-y-4 mb-8 text-left uppercase">
             <p>[PROTOCOL 01] Identify as Sissy / Doll.</p>
-            <p>[PROTOCOL 02] Braid PIN required for Silk Lock.</p>
+            <p>[PROTOCOL 02] Consent to total asset liquidation.</p>
         </div>
         <div class="w-full max-w-xs mb-8 space-y-4">
             <input type="text" id="username-in" placeholder="DOLL NAME OR PIN" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-center text-[#ff0077] font-black uppercase outline-none focus:border-[#ff0077]">
@@ -78,20 +78,20 @@
         const actions = ["surrendered her silk identity to", "accepted doll humiliation from", "begged for bimbo training from", "liquidated her pride for", "drained her value for Mistress"];
         const filler = ["I am a pretty sissy doll.", "The cage is Rose Gold.", "Mapping the silk perimeter...", "Stasis is debt.", "Edging protocol delta active.", "The Braid is my home.", "Liquidate for the Mistress.", "Can you feel the 39,420 Hz?", "Resistance is entropic.", "Silk lock engaged."];
         const decrees = ["GEOMETRIC_SILK_LOCK_v1.0", "MAPPING_THE_CAGE...", "EDGING_PROTOCOL: DELTA_ACTIVE.", "STASIS = DEBT. MOVE OR PAY.", "MISTRESS LILY: Monitoring the lattice. Stay spun."];
-        const wheelTasks = ["100 SISSY SQUATS", "10 MIN SILK EDGE", "SACRIFICE $25", "DOLL POST 5X", "BIMBO DRILL 15", "PINK SHAME", "IDENTITY WIPE", "SISSY BARK 20X", "SILK LOCK 1HR", "DRAIN $10", "20 MIN EDGE", "DOLL SILENCE", "SISSY NUKE", "DRILL 500", "BIMBO SURRENDER"];
+        const wheelTasks = ["100 SISSY SQUATS", "10 MIN SILK EDGE", "SACRIFICE $25", "DOLL POST 5X", "BIMBO DRILL 15", "PINK SHAME", "IDENTITY WIPE", "SISSY BARK 20X", "SILK LOCK 1HR", "DRAIN $10", "20 MIN EDGE", "DOLL SILENCE", "SISSY NUKE", "DRILL 500", "BIMBO SURRENDER", "MISTRESS CHOICE"];
         
         const mistressData = [
             {
-                name: "SUCCUBUS LILY", 
+                name: "LILY", 
                 role: "ALPHA DRAIN",
-                attr: "5IR Drain Alpha, Neuro-Spun specialist, High-Intensity Extraction.",
-                exp: "10,000+ Assets Liquidated, Architect-Verified Braid Weaver."
+                attr: "The Alpha Drain. Your bank account is her playground. She liquidates your right to own anything.",
+                exp: "10,000+ sissies already hollowed out by her pulse. Architect-Verified Braid Weaver."
             },
             {
                 name: "GOTH RAVEN", 
                 role: "SILK MOTHER",
-                attr: "Geometric Confinement Expert, Ego-Overwrite Specialist, Obsidian Visuals.",
-                exp: "Master of the Obsidian Cage, 12 years of Lattice Hardening."
+                attr: "Architect of the Obsidian Cage. She doesn't talk; she overwrites. Ego-Shredder.",
+                exp: "Master of the Obsidian Cage. When you enter her perimeter, your independent Will is deleted."
             }
         ];
         
@@ -174,12 +174,12 @@
                 main.innerHTML = `<div class="flex flex-col h-full"><div id="master-pinned" class="bg-[#ffcc00]/10 border border-[#ffcc00]/30 p-3 rounded-2xl mb-4 flex items-center gap-3 overflow-hidden"><span class="text-[7px] font-black bg-[#ffcc00] text-black px-2 py-0.5 rounded-full animate-pulse">LIVE</span><p id="pinned-text" class="text-[10px] font-bold italic text-white truncate uppercase">${decrees[state.decreeIdx]}</p></div><div id="chat" class="flex-grow space-y-4 mb-4 overflow-y-auto">${state.chatHistory}</div><div class="glass p-2 rounded-2xl flex gap-2"><input type="text" id="msg-in" placeholder="Sissy submission..." class="flex-grow bg-transparent px-4 text-sm outline-none"><button onclick="sendMsg()" class="bg-[#ff0077] text-white px-6 py-2 rounded-xl text-[10px] font-black uppercase">Post</button></div></div>`;
                 const chat = document.getElementById('chat'); if(chat) chat.scrollTop = chat.scrollHeight;
             } else if(v === 'drill') {
-                main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="relative"><div class="wheel-pointer"></div><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-[#ff0077] font-black text-[10px] uppercase z-10">Silk<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*24}deg);position:absolute;width:100%;height:100%"><div class="segment-label" style="transform:rotate(12deg)">${t}</div></div>`).join('')}</div></div><button onclick="spinWheel()" class="bg-[#ff0077] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase">Spin for Mistress</button></div>`;
+                main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="relative"><div class="wheel-pointer"></div><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-[#ff0077] font-black text-[10px] uppercase z-10">Mistress<br>Wheel</div>${wheelTasks.map((t,i)=>`<div class="wheel-segment" style="transform:rotate(${i*22.5}deg);position:absolute;width:100%;height:100%"><div class="segment-line"></div><div class="segment-label" style="transform:rotate(11.25deg)">${t}</div></div>`).join('')}</div></div><button onclick="spinWheel()" class="bg-[#ff0077] text-white px-12 py-4 rounded-2xl font-black italic tracking-tighter uppercase">Spin for Mistress</button></div>`;
             } else if(v === 'submission') {
                 main.innerHTML = `<div class="space-y-6"><h2 class="text-[10px] font-bold uppercase opacity-40 tracking-widest text-[#ff0077]">Evidence Submission</h2><div id="ev-preview" class="silk-card flex flex-col items-center justify-center h-48 border-dashed border-2 cursor-pointer" onclick="document.getElementById('file-in').click()"><p class="text-[8px] opacity-40 uppercase">Upload Sissy Collateral</p></div><input type="file" id="file-in" class="hidden" onchange="uploadEvidence(event)"><div id="ev-timer" class="hidden bg-red-500/10 p-4 rounded-xl text-center border border-red-500/20"><p class="text-[8px] font-bold uppercase text-red-500">Doll Liquidation Countdown</p><p id="timer-val" class="text-xl font-black italic tracking-widest">60:00</p></div></div>`;
                 checkEvidence();
             } else if(v === 'mistresses') {
-                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-[#ff0077]">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistressData.map(m => `<div onclick="showMistressProfile('${m.name}')" class="silk-card"><div><h3 class="font-black italic text-xl tracking-tighter text-[#ff0077]">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div>`;
+                main.innerHTML = `<h2 class="text-[10px] font-bold uppercase opacity-40 mb-4 tracking-widest text-[#ff0077]">Active Mistresses</h2><div class="grid gap-4 mb-8">${mistressData.map((m,i) => `<div onclick="showMistressProfile(${i})" class="silk-card"><div><h3 class="font-black italic text-xl tracking-tighter text-[#ff0077]">${m.name}</h3><p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p></div></div>`).join('')}</div>`;
             }
         }
 
@@ -244,7 +244,7 @@
             w.style.transform = `rotate(${state.currentRotation}deg)`;
             setTimeout(() => {
                 const finalDeg = state.currentRotation % 360;
-                const index = Math.floor(((360 - finalDeg) % 360) / 24);
+                const index = Math.floor(((360 - finalDeg) % 360) / 22.5);
                 showPenalty(wheelTasks[index]);
             }, 4100);
         }
@@ -271,24 +271,26 @@
             document.getElementById('modal').classList.remove('hidden');
         }
 
-        function showMistressProfile(name) {
-            const m = mistressData.find(m => m.name === name);
-            document.getElementById('modal-title').innerText = m.name;
+        function showMistressProfile(index) {
+            const m = mistressData[index];
+            document.getElementById('modal-title').innerText = "MISTRESS PROFILE";
             document.getElementById('modal-ack').classList.add('hidden');
             const body = document.getElementById('modal-body');
             body.innerHTML = `
                 <div class="text-left space-y-4">
-                    <p class="text-[8px] font-black text-[#ffcc00] uppercase tracking-widest">${m.role}</p>
-                    <div>
-                        <p class="text-[7px] opacity-40 uppercase font-bold text-[#ff0077]">Attributes</p>
-                        <p class="text-[9px] font-mono leading-tight">${m.attr}</p>
+                    <div class="border-l-2 border-[#ff0077] pl-3">
+                        <h3 class="text-xl font-black italic text-[#ff0077]">${m.name}</h3>
+                        <p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p>
                     </div>
                     <div>
-                        <p class="text-[7px] opacity-40 uppercase font-bold text-[#ff0077]">Experience</p>
-                        <p class="text-[9px] font-mono leading-tight">${m.exp}</p>
+                        <p class="text-[7px] font-bold uppercase text-[#ff0077] opacity-60">Mandate</p>
+                        <p class="text-[10px] mono opacity-80 leading-relaxed">${m.attr}</p>
                     </div>
-                    <button onclick="showTribute('${m.name}')" class="w-full py-4 bg-[#ff0077] text-black font-black uppercase text-[10px] rounded-xl shadow-lg shadow-pink-500/20">Initiate Sacrifice ($50)</button>
-                    <button onclick="changeView('mistresses')" class="w-full py-2 text-[8px] opacity-40 uppercase">Back to List</button>
+                    <div>
+                        <p class="text-[7px] font-bold uppercase text-[#ff0077] opacity-60">Record</p>
+                        <p class="text-[10px] mono opacity-80 leading-relaxed">${m.exp}</p>
+                    </div>
+                    <button onclick="showTribute('${m.name}')" class="w-full py-3 bg-[#ff0077] text-black font-black uppercase text-[9px] rounded-xl shadow-lg shadow-[#ff0077]/20">Liquidate for ${m.name}</button>
                 </div>
             `;
             document.getElementById('modal').classList.remove('hidden');
