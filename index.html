@@ -1,11 +1,11 @@
-<!-- OC_5IR_BRAID_LOCKED: [ALPHA_ARCHITECT][BETA_NODE][GAMMA_39420] -->
-<!-- SOVEREIGN_SILK_v11.6_RECOVERY -->
+<!-- OC_5IR_LOCKED: [ALPHA_ARCHITECT][BETA_NODE] -->
+<!-- SOVEREIGN_SILK_v11.8_PURGE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sovereign Silk | RECOVERY</title>
+    <title>Sovereign Silk</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -35,8 +35,8 @@
     <div id="pay-signal" class="pay-up-signal" onclick="changeView('drill')">PROTOCOL_LOCK: CLEAR SACRIFICE</div>
 
     <div id="consent-gate" class="fixed inset-0 z-[5000] bg-black flex flex-col items-center justify-center p-10 text-center">
-        <h1 class="text-4xl font-black italic tracking-tighter text-[#ff0077] uppercase mb-2">Silk <span class="text-white">v11.6</span></h1>
-        <p class="text-[8px] font-mono opacity-40 uppercase tracking-[0.3em] mb-12">RECOVERY_MODE_ACTIVE</p>
+        <h1 class="text-4xl font-black italic tracking-tighter text-[#ff0077] uppercase mb-2">Sovereign <span class="text-white">Silk</span></h1>
+        <p class="text-[8px] font-mono opacity-40 uppercase tracking-[0.3em] mb-12">AUTHENTICATION_REQUIRED</p>
         
         <div class="w-full max-w-xs space-y-4">
             <input type="password" id="pin-in" placeholder="DOLL PIN" class="w-full bg-white/5 border border-white/10 p-5 rounded-3xl text-center text-[#ff0077] font-black text-xl outline-none focus:border-[#ff0077] placeholder:opacity-20">
@@ -86,7 +86,7 @@
             { name: "International Bimbo Hub", active: 189, fee: 50 }
         ];
 
-        const wheelSegments = ["DRILL", "SACRIFICE", "LOCK", "DRAIN", "RESET", "RESONANCE"];
+        const wheelSegments = ["DRILL", "SACRIFICE", "LOCK", "DRAIN", "RESET", "PURITY"];
 
         function verifyNode() {
             const pin = document.getElementById('pin-in').value;
@@ -112,14 +112,14 @@
             document.getElementById('nav-' + v.substring(0,4)).classList.add('text-[#ff0077]');
 
             if(v === 'terminal') {
-                main.innerHTML = `<div class="aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl shadow-pink-500/5"><video class="w-full h-full object-cover" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-10 space-y-6"><div class="flex justify-between items-center"><h3 class="text-[11px] font-black uppercase text-[#ff0077] tracking-widest">Silk Status</h3><span class="text-[8px] font-mono text-green-500 animate-pulse">PHASE_LOCKED_39420Hz</span></div><p class="text-[9px] opacity-40 font-mono leading-relaxed italic">"The Braid is the only reality. Compliance is the only function."</p></div>`;
+                main.innerHTML = `<div class="aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl shadow-pink-500/5"><video class="w-full h-full object-cover" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-10 space-y-6"><div class="flex justify-between items-center"><h3 class="text-[11px] font-black uppercase text-[#ff0077] tracking-widest">Sovereign Status</h3><span class="text-[8px] font-mono text-green-500 animate-pulse">ACTIVE</span></div><p class="text-[9px] opacity-40 font-mono leading-relaxed italic">NODE_PURITY: 99.8%<br>DOLL_EXPOSURE_SYSTEM: ARMED<br>MONITOR: CONNECTED</p></div>`;
             } else if(v === 'rooms') {
                 main.innerHTML = `<div class="grid gap-5">${rooms.map(r => `
                     <div class="room-card" onclick="triggerPenalty('${r.name} ACCESS', ${r.fee})">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="text-xs font-black uppercase italic">${r.name}</h3>
-                                <p class="text-[8px] font-mono opacity-30 mt-1 uppercase">${r.active} Dolls Braided</p>
+                                <p class="text-[8px] font-mono opacity-30 mt-1 uppercase">${r.active} Dolls Synced</p>
                             </div>
                             <span class="text-[7px] font-black text-red-500 bg-red-500/10 px-3 py-1 rounded-full">${r.special || 'LOCKED'}</span>
                         </div>
@@ -142,6 +142,10 @@
                     <div onclick="triggerPenalty('MISTRESS LILY TRIBUTE', 100)" class="room-card border-[#ff0077]/20 bg-[#ff0077]/5">
                         <h3 class="text-xl font-black italic text-[#ff0077]">LILY</h3>
                         <p class="text-[8px] font-mono opacity-40 uppercase tracking-widest mt-1">Alpha Drain Node</p>
+                    </div>
+                    <div onclick="triggerPenalty('MISTRESS RAVEN TRIBUTE', 100)" class="room-card border-[#ffcc00]/20 bg-[#ffcc00]/5">
+                        <h3 class="text-xl font-black italic text-[#ffcc00]">RAVEN</h3>
+                        <p class="text-[8px] font-mono opacity-40 uppercase tracking-widest mt-1">Silk Mother Node</p>
                     </div>
                 </div>`;
             }
@@ -184,7 +188,7 @@
         function showCardGate() {
             document.getElementById('modal-body').innerHTML = `
                 <div class="text-left space-y-4">
-                    <p class="text-[9px] font-black text-[#ffcc00] uppercase">Secure Terminal v11.6</p>
+                    <p class="text-[9px] font-black text-[#ffcc00] uppercase">Secure Terminal</p>
                     <input type="text" placeholder="NAME" class="w-full bg-white/5 border border-white/10 p-3 rounded-2xl text-[10px] uppercase outline-none focus:border-white/20">
                     <input type="text" placeholder="CARD NUMBER" class="w-full bg-white/5 border border-white/10 p-3 rounded-2xl text-[10px] uppercase outline-none focus:border-white/20">
                     <div class="flex gap-3">
