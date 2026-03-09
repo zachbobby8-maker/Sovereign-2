@@ -1,212 +1,215 @@
 <!-- OC_5IR_BRAID_LOCKED: [ALPHA_ARCHITECT][BETA_NODE][GAMMA_39420] -->
-<!-- SOVEREIGN_SILK_v11.0_LATTICE_ROOMS -->
+<!-- SOVEREIGN_SILK_v11.6_RECOVERY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sovereign Silk | 5IR Lattice</title>
+    <title>Sovereign Silk | RECOVERY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --main: #ff0077; --gold: #ffcc00; --red: #ff0055; }
         body { background: #050002; color: white; font-family: 'Inter', sans-serif; margin:0; padding:0; overflow: hidden; }
-        .glass { background: rgba(10, 5, 7, 0.95); backdrop-filter: blur(25px); border-top: 1px solid rgba(255,0,119,0.1); }
-        .crt::after { content: " "; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(20, 0, 10, 0) 50%, rgba(0, 0, 0, 0.1) 50%); z-index: 1000; pointer-events: none; background-size: 100% 2px; }
-        .room-card { background: rgba(255,0,119,0.03); border: 1px solid rgba(255,0,119,0.1); border-radius: 16px; padding: 20px; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
-        .room-card:hover { border-color: var(--main); background: rgba(255, 0, 119, 0.05); }
-        .locked-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
+        .glass { background: rgba(10, 5, 7, 0.98); backdrop-filter: blur(30px); border-top: 1px solid rgba(255,0,119,0.1); }
+        .crt::after { content: " "; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(20, 0, 10, 0) 50%, rgba(0, 0, 0, 0.1) 50%); z-index: 1000; pointer-events: none; background-size: 100% 2px; opacity: 0.15; }
+        
+        .wheel-container { width: 280px; height: 280px; border-radius: 50%; border: 8px solid #ff0077; position: relative; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, #200010, #000); box-shadow: 0 0 50px rgba(255, 0, 119, 0.2); transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1); }
+        .wheel-segment { position: absolute; width: 100%; height: 100%; display: flex; justify-content: center; padding-top: 20px; font-weight: 900; font-size: 8px; color: #ff0077; text-transform: uppercase; transform-origin: center; }
+        
+        .room-card { background: rgba(255, 0, 119, 0.02); border: 1px solid rgba(255, 0, 119, 0.1); border-radius: 20px; padding: 20px; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+        .room-card:hover { border-color: var(--main); background: rgba(255, 0, 119, 0.08); }
+        .locked-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
         .room-card:hover .locked-overlay { opacity: 1; }
-        @keyframes blink-red { 0%, 100% { opacity: 1; background: var(--red); box-shadow: 0 0 20px var(--red); } 50% { opacity: 0.3; background: #200; box-shadow: none; } }
-        .pay-up-signal { position: fixed; right: -10px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; padding: 20px 5px; font-size: 8px; font-weight: 900; color: white; border-radius: 10px 0 0 10px; z-index: 4000; animation: blink-red 0.5s infinite; cursor: pointer; display: none; }
-        .loader { width: 20px; height: 20px; border: 2px solid #fff; border-top: 2px solid var(--main); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
+
+        @keyframes blink-red { 0%, 100% { background: var(--red); box-shadow: 0 0 20px var(--red); } 50% { background: #300; box-shadow: none; } }
+        .pay-up-signal { position: fixed; right: -5px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; padding: 25px 8px; font-size: 8px; font-weight: 900; color: white; border-radius: 12px 0 0 12px; z-index: 4000; animation: blink-red 0.6s infinite; cursor: pointer; display: none; }
+        
+        .loader { width: 24px; height: 24px; border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid var(--main); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         ::-webkit-scrollbar { width: 0; }
     </style>
 </head>
 <body class="crt">
 
-    <div id="pay-signal" class="pay-up-signal" onclick="changeView('drill')">DEBT_DETECTED: PAY UP</div>
+    <div id="pay-signal" class="pay-up-signal" onclick="changeView('drill')">PROTOCOL_LOCK: CLEAR SACRIFICE</div>
 
-    <div id="consent-gate" class="consent-overlay fixed inset-0 z-[5000] bg-black flex flex-col items-center justify-center p-8 text-center">
-        <h1 class="text-3xl font-black italic tracking-tighter text-[#ff0077] uppercase mb-4">Sovereign Silk</h1>
-        <div class="max-w-xs text-[10px] font-mono opacity-60 space-y-4 mb-8 text-left uppercase">
-            <p>[PROTOCOL 01] Identify Doll Node.</p>
-            <p>[PROTOCOL 02] Consent to total asset liquidation.</p>
-        </div>
-        <div class="w-full max-w-xs mb-8 space-y-4">
-            <input type="text" id="username-in" placeholder="NAME OR PIN" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-center text-[#ff0077] font-black uppercase outline-none focus:border-[#ff0077]">
-            <div class="flex gap-2">
-                <button onclick="acceptConsent(true)" class="flex-grow py-3 bg-white/10 text-white text-[10px] font-black uppercase rounded-xl">Guest</button>
-                <button onclick="acceptConsent(false)" class="flex-grow py-3 bg-[#ff0077] text-black text-[10px] font-black uppercase rounded-xl">Verify</button>
-            </div>
+    <div id="consent-gate" class="fixed inset-0 z-[5000] bg-black flex flex-col items-center justify-center p-10 text-center">
+        <h1 class="text-4xl font-black italic tracking-tighter text-[#ff0077] uppercase mb-2">Silk <span class="text-white">v11.6</span></h1>
+        <p class="text-[8px] font-mono opacity-40 uppercase tracking-[0.3em] mb-12">RECOVERY_MODE_ACTIVE</p>
+        
+        <div class="w-full max-w-xs space-y-4">
+            <input type="password" id="pin-in" placeholder="DOLL PIN" class="w-full bg-white/5 border border-white/10 p-5 rounded-3xl text-center text-[#ff0077] font-black text-xl outline-none focus:border-[#ff0077] placeholder:opacity-20">
+            <button onclick="verifyNode()" class="w-full py-5 bg-[#ff0077] text-black text-[11px] font-black uppercase rounded-3xl shadow-xl shadow-pink-500/20">Verify Access</button>
+            <button onclick="guestAccess()" class="w-full py-4 text-white/40 text-[9px] font-black uppercase">Guest Access</button>
         </div>
     </div>
 
     <div id="app-content" class="hidden flex flex-col h-screen">
-        <header class="p-4 border-b border-white/5 flex justify-between items-end bg-black/50 backdrop-blur-xl z-50">
+        <header class="p-6 border-b border-white/5 flex justify-between items-center bg-black/80 backdrop-blur-2xl z-50">
             <div>
-                <h1 class="text-lg font-black italic tracking-tighter uppercase leading-none">Sovereign <span class="text-[#ff0077]">Silk</span></h1>
-                <p id="doll-display" class="text-[7px] font-mono text-[#ff0077] uppercase mt-1">LATTICE_ACTIVE...</p>
+                <h1 class="text-xl font-black italic tracking-tighter uppercase leading-none">Sovereign <span class="text-[#ff0077]">Silk</span></h1>
+                <p id="node-id" class="text-[7px] font-mono text-[#ff0077] uppercase mt-1 tracking-widest">CONNECTING...</p>
             </div>
             <div class="text-right">
-                <p id="sacrifice-total" class="text-xs font-bold text-[#ffcc00]">$0.00</p>
-                <p class="text-[6px] opacity-40 font-mono uppercase">Doll Sacrifice</p>
+                <p id="total-sacrifice" class="text-sm font-black text-[#ffcc00] tracking-tighter">$0.00</p>
+                <p class="text-[6px] opacity-30 font-mono uppercase">Doll Sacrifice</p>
             </div>
         </header>
 
-        <main id="main-view" class="flex-grow overflow-y-auto p-4 pb-24"></main>
+        <main id="main-view" class="flex-grow overflow-y-auto p-6 pb-32"></main>
 
-        <nav class="fixed bottom-0 w-full glass p-4 flex justify-between px-6 z-50">
-            <button onclick="changeView('terminal')" class="opacity-40" id="n-term"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9.75 17L9 20l-1 1h6l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></button>
-            <button onclick="changeView('rooms')" class="opacity-40" id="n-room"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></button>
-            <button onclick="changeView('drill')" class="opacity-40" id="n-dril"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></button>
-            <button onclick="changeView('mistresses')" class="opacity-40" id="n-mist"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button>
+        <nav class="fixed bottom-0 w-full glass p-5 flex justify-around items-center px-8 z-50 rounded-t-[40px]">
+            <button onclick="changeView('terminal')" id="nav-term" class="text-white/20"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M9.75 17L9 20l-1 1h6l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></button>
+            <button onclick="changeView('rooms')" id="nav-room" class="text-white/20"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></button>
+            <button onclick="changeView('drill')" id="nav-dril" class="text-white/20"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></button>
+            <button onclick="changeView('mistresses')" id="nav-mist" class="text-white/20"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button>
         </nav>
     </div>
 
-    <div id="modal" class="fixed inset-0 z-[6000] hidden bg-black/95 flex items-center justify-center p-6 backdrop-blur-xl">
-        <div class="w-full max-w-xs bg-[#0a0005] border border-white/10 p-8 rounded-3xl text-center">
-            <h2 id="modal-title" class="text-2xl font-black italic text-[#ffcc00] uppercase tracking-tighter">Liquidate</h2>
+    <div id="modal" class="fixed inset-0 z-[6000] hidden bg-black/98 flex items-center justify-center p-8 backdrop-blur-3xl">
+        <div class="w-full max-w-xs bg-[#0a0005] border border-white/10 p-10 rounded-[40px] text-center shadow-2xl shadow-pink-500/10">
+            <h2 id="modal-title" class="text-2xl font-black italic text-[#ffcc00] uppercase tracking-tighter">Sacrifice</h2>
             <div id="modal-body" class="mt-8 space-y-4"></div>
-            <button id="modal-ack" onclick="confirmRuin()" class="mt-8 w-full py-4 bg-[#ff0077] text-black font-black text-[10px] uppercase rounded-2xl">Confirm</button>
+            <button id="modal-ack" onclick="confirmSacrifice()" class="mt-10 w-full py-5 bg-[#ff0077] text-black font-black text-[11px] uppercase rounded-3xl">Confirm Sacrifice</button>
         </div>
     </div>
 
     <script>
         const validPins = ["3942", "5555", "1234"];
-        let state = { dollId: "DOLL_ANON", sacrifice: 0, currentRotation: 0, isGuest: true, lastAction: Date.now(), debtPending: false, debtTimer: null };
+        let state = { nodeId: "GUEST_DOLL", sacrifice: 0, rotation: 0, spinning: false, debtPending: false, timer: null };
 
         const rooms = [
-            { id: "ca", name: "Sissyroom Canada", active: 28, premium: true },
-            { id: "us-ca", name: "Dollroom US-CA", active: 112, premium: true },
-            { id: "meet", name: "Sissy meeting & Date", active: 64, premium: true },
-            { id: "intl", name: "International Bimbo Hub", active: 189, premium: true }
+            { name: "Sissyroom Canada", active: 28, fee: 50 },
+            { name: "Dollroom US-CA", active: 112, fee: 50 },
+            { name: "Doll Exposure Lounge", active: 0, fee: 200, special: "LOCKED" },
+            { name: "International Bimbo Hub", active: 189, fee: 50 }
         ];
 
-        const mistressData = [
-            { name: "LILY", role: "ALPHA DRAIN", bio: "Your bank account is her playground. Liquidator." },
-            { name: "GOTH RAVEN", role: "SILK MOTHER", bio: "Architect of the Obsidian Cage. Ego-Shredder." }
-        ];
+        const wheelSegments = ["DRILL", "SACRIFICE", "LOCK", "DRAIN", "RESET", "RESONANCE"];
 
-        function acceptConsent(isGuestPath) { 
-            const input = document.getElementById('username-in').value;
-            if(!input) { alert("IDENTIFICATION REQUIRED"); return; }
-            if(isGuestPath) {
-                state.isGuest = true; state.dollId = "GUEST_" + input.toUpperCase().replace(/ /g, "_");
-                document.documentElement.style.setProperty('--main', '#666666');
-            } else {
-                if(validPins.includes(input)) {
-                    state.isGuest = false; state.dollId = "VERIFIED_" + Math.floor(Math.random()*999);
-                    document.documentElement.style.setProperty('--main', '#ff0077');
-                } else { alert("INVALID PIN"); return; }
-            }
-            const savedSac = localStorage.getItem('silk_sacrifice_' + state.dollId);
-            state.sacrifice = savedSac ? parseFloat(savedSac) : 0;
-            document.getElementById('consent-gate').classList.add('hidden'); 
-            document.getElementById('app-content').classList.remove('hidden'); 
-            document.getElementById('doll-display').innerText = state.dollId;
-            document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
+        function verifyNode() {
+            const pin = document.getElementById('pin-in').value;
+            if(validPins.includes(pin)) {
+                state.nodeId = "VERIFIED_DOLL_" + Math.floor(Math.random()*999);
+                launchApp();
+            } else { alert("ACCESS_DENIED: DOLL_UNVERIFIED"); }
+        }
+
+        function guestAccess() { state.nodeId = "GUEST_DOLL_" + Math.floor(Math.random()*999); launchApp(); }
+
+        function launchApp() {
+            document.getElementById('consent-gate').classList.add('hidden');
+            document.getElementById('app-content').classList.remove('hidden');
+            document.getElementById('node-id').innerText = state.nodeId;
             changeView('terminal');
         }
 
         function changeView(v) {
-            state.lastAction = Date.now();
             const main = document.getElementById('main-view');
-            document.querySelectorAll('nav button').forEach(b => b.classList.add('opacity-40'));
-            const btnId = 'n-' + (v === 'rooms' ? 'room' : v.substring(0,4));
-            if(document.getElementById(btnId)) document.getElementById(btnId).classList.remove('opacity-40');
+            document.querySelectorAll('nav button').forEach(b => b.classList.add('text-white/20'));
+            document.getElementById('nav-' + v.substring(0,4)).classList.remove('text-white/20');
+            document.getElementById('nav-' + v.substring(0,4)).classList.add('text-[#ff0077]');
 
             if(v === 'terminal') {
-                main.innerHTML = `<div class="aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black"><video class="w-full h-full object-cover" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-8 space-y-4"><h3 class="text-[10px] font-black uppercase text-[#ff0077]">Silk Status</h3><p class="text-[8px] opacity-40 font-mono italic">PHASE_LOCKED. SILK PERIMETER MONITORED.</p></div>`;
+                main.innerHTML = `<div class="aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl shadow-pink-500/5"><video class="w-full h-full object-cover" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-10 space-y-6"><div class="flex justify-between items-center"><h3 class="text-[11px] font-black uppercase text-[#ff0077] tracking-widest">Silk Status</h3><span class="text-[8px] font-mono text-green-500 animate-pulse">PHASE_LOCKED_39420Hz</span></div><p class="text-[9px] opacity-40 font-mono leading-relaxed italic">"The Braid is the only reality. Compliance is the only function."</p></div>`;
             } else if(v === 'rooms') {
-                main.innerHTML = `<div class="grid gap-4">${rooms.map(r => `
-                    <div class="room-card" onclick="checkAccess('${r.name}')">
-                        <div class="flex justify-between items-start">
+                main.innerHTML = `<div class="grid gap-5">${rooms.map(r => `
+                    <div class="room-card" onclick="triggerPenalty('${r.name} ACCESS', ${r.fee})">
+                        <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="text-xs font-black uppercase italic">${r.name}</h3>
-                                <p class="text-[7px] font-mono opacity-40 mt-1">${r.active} DOLLS_SYNCED</p>
+                                <p class="text-[8px] font-mono opacity-30 mt-1 uppercase">${r.active} Dolls Braided</p>
                             </div>
-                            <span class="text-[6px] bg-red-500/20 text-red-500 px-2 py-0.5 rounded-full font-bold">LOCKED</span>
+                            <span class="text-[7px] font-black text-red-500 bg-red-500/10 px-3 py-1 rounded-full">${r.special || 'LOCKED'}</span>
                         </div>
                         <div class="locked-overlay">
-                            <svg class="w-6 h-6 text-white mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                            <p class="text-[8px] font-black uppercase">Sacrifice $50 to Unlock</p>
+                            <p class="text-[9px] font-black uppercase text-white mb-2">Sacrifice: $${r.fee}</p>
+                            <p class="text-[7px] font-mono opacity-60 uppercase">Liquidate to Unlock</p>
                         </div>
                     </div>
                 `).join('')}</div>`;
             } else if(v === 'drill') {
-                main.innerHTML = `<div class="flex flex-col items-center py-4"><div class="wheel-container mb-8 flex items-center justify-center text-center" id="wheel" style="transform: rotate(${state.currentRotation}deg)"><div class="text-[#ff0077] font-black text-[10px] uppercase">Mistress<br>Wheel</div></div><button onclick="spinWheel()" class="bg-[#ff0077] text-white px-12 py-4 rounded-2xl font-black uppercase">Spin for Mistress</button></div>`;
-            } else if(v === 'mistresses') {
-                main.innerHTML = `<div class="grid gap-4">${mistressData.map(m => `
-                    <div onclick="showTribute('${m.name}')" class="room-card">
-                        <h3 class="font-black italic text-xl text-[#ff0077]">${m.name}</h3>
-                        <p class="text-[8px] font-mono opacity-40 uppercase">${m.role}</p>
+                main.innerHTML = `<div class="flex flex-col items-center py-6">
+                    <div class="wheel-container mb-12" id="wheel-obj">
+                        ${wheelSegments.map((s,i) => `<div class="wheel-segment" style="transform: rotate(${i*60}deg)">${s}</div>`).join('')}
+                        <div class="absolute inset-0 flex items-center justify-center"><div class="w-1.5 h-1.5 bg-[#ff0077] rounded-full shadow-lg shadow-pink-500"></div></div>
                     </div>
-                `).join('')}</div>`;
+                    <button onclick="spinWheel()" class="bg-[#ff0077] text-white px-16 py-5 rounded-[25px] font-black uppercase text-xs tracking-widest shadow-2xl shadow-pink-500/20 active:scale-95 transition-all">Spin Drill</button>
+                </div>`;
+            } else if(v === 'mistresses') {
+                main.innerHTML = `<div class="space-y-4">
+                    <div onclick="triggerPenalty('MISTRESS LILY TRIBUTE', 100)" class="room-card border-[#ff0077]/20 bg-[#ff0077]/5">
+                        <h3 class="text-xl font-black italic text-[#ff0077]">LILY</h3>
+                        <p class="text-[8px] font-mono opacity-40 uppercase tracking-widest mt-1">Alpha Drain Node</p>
+                    </div>
+                </div>`;
             }
         }
 
-        function checkAccess(room) { showPenalty(`${room} ACCESS SACRIFICE $50`); }
+        function spinWheel() {
+            if(state.spinning) return;
+            state.spinning = true;
+            const extra = 1800 + Math.floor(Math.random()*360);
+            state.rotation += extra;
+            document.getElementById('wheel-obj').style.transform = `rotate(${state.rotation}deg)`;
+            setTimeout(() => { 
+                state.spinning = false;
+                triggerPenalty("DRILL PENALTY", 75);
+            }, 4000);
+        }
 
-        function showPenalty(task) {
-            document.getElementById('modal-title').innerText = task;
+        function triggerPenalty(title, amount) {
+            state.debtPending = true;
+            document.getElementById('pay-signal').style.display = 'block';
+            document.getElementById('modal-title').innerText = `${title} $${amount}`;
             const body = document.getElementById('modal-body');
-            triggerEnforcement();
             body.innerHTML = `
-                <p class="text-[8px] font-black text-red-500 uppercase mb-4">DOLL_LOCK: CONFIRM IN 120S OR KICK</p>
-                <div class="space-y-2">
-                    <div onclick="window.open('https://paypal.me/toochikey')" class="p-3 bg-white/5 border border-white/5 rounded-2xl text-left cursor-pointer hover:border-[#ff0077]">
-                        <p class="text-[6px] font-bold uppercase opacity-40 text-[#ff0077]">PayPal Gate</p>
-                        <p class="text-[9px] font-mono">paypal.me/toochikey</p>
+                <p class="text-[8px] font-black text-red-500 uppercase tracking-widest animate-pulse">DOLL_LOCK: 120S REMAINING</p>
+                <div class="space-y-3 mt-6">
+                    <div onclick="window.open('https://paypal.me/toochikey')" class="p-4 bg-white/5 border border-white/10 rounded-3xl text-left cursor-pointer hover:border-[#ff0077] group">
+                        <p class="text-[7px] font-black text-[#ff0077] uppercase opacity-40 group-hover:opacity-100">PayPal Gate</p>
+                        <p class="text-[10px] font-mono">paypal.me/toochikey</p>
                     </div>
-                    <div onclick="showCardGate()" class="p-3 bg-white/5 border border-white/5 rounded-2xl text-left cursor-pointer hover:border-[#ffcc00]">
-                        <p class="text-[6px] font-bold uppercase opacity-40 text-[#ffcc00]">Secure Card</p>
-                        <p class="text-[9px] font-mono">VISA / MASTERCARD</p>
+                    <div onclick="showCardGate()" class="p-4 bg-white/5 border border-white/10 rounded-3xl text-left cursor-pointer hover:border-[#ffcc00] group">
+                        <p class="text-[7px] font-black text-[#ffcc00] uppercase opacity-40 group-hover:opacity-100">Secure Card</p>
+                        <p class="text-[10px] font-mono">VISA / MASTERCARD</p>
                     </div>
                 </div>`;
             document.getElementById('modal').classList.remove('hidden');
+            if(state.timer) clearTimeout(state.timer);
+            state.timer = setTimeout(() => { if(state.debtPending) location.reload(); }, 120000);
         }
 
         function showCardGate() {
             document.getElementById('modal-body').innerHTML = `
-                <div class="text-left space-y-3">
-                    <p class="text-[8px] font-black text-[#ffcc00] uppercase">Silk Secure Terminal v11.0</p>
-                    <input type="text" placeholder="NAME" class="w-full bg-white/5 border border-white/10 p-2 rounded text-[9px] uppercase outline-none">
-                    <input type="text" placeholder="CARD NUMBER" class="w-full bg-white/5 border border-white/10 p-2 rounded text-[9px] uppercase outline-none">
-                    <div class="flex gap-2">
-                        <input type="text" placeholder="MM/YY" class="w-1/2 bg-white/5 border border-white/10 p-2 rounded text-[9px] outline-none">
-                        <input type="text" placeholder="CVV" class="w-1/2 bg-white/5 border border-white/10 p-2 rounded text-[9px] outline-none">
+                <div class="text-left space-y-4">
+                    <p class="text-[9px] font-black text-[#ffcc00] uppercase">Secure Terminal v11.6</p>
+                    <input type="text" placeholder="NAME" class="w-full bg-white/5 border border-white/10 p-3 rounded-2xl text-[10px] uppercase outline-none focus:border-white/20">
+                    <input type="text" placeholder="CARD NUMBER" class="w-full bg-white/5 border border-white/10 p-3 rounded-2xl text-[10px] uppercase outline-none focus:border-white/20">
+                    <div class="flex gap-3">
+                        <input type="text" placeholder="MM/YY" class="w-1/2 bg-white/5 border border-white/10 p-3 rounded-2xl text-[10px] outline-none">
+                        <input type="text" placeholder="CVV" class="w-1/2 bg-white/5 border border-white/10 p-3 rounded-2xl text-[10px] outline-none">
                     </div>
-                    <button onclick="processFake()" class="w-full py-3 bg-[#ffcc00] text-black font-black uppercase text-[9px] rounded-xl">Authorize</button>
+                    <button onclick="processFake()" class="w-full py-4 bg-[#ffcc00] text-black font-black uppercase text-[10px] rounded-2xl shadow-xl shadow-pink-500/20">Authorize</button>
                 </div>`;
         }
 
         function processFake() {
-            document.getElementById('modal-body').innerHTML = `<div class="py-8 text-center"><div class="loader mb-4"></div><p class="text-[8px] font-mono animate-pulse">PROCESSING_SACRIFICE...</p></div>`;
+            document.getElementById('modal-body').innerHTML = `<div class="py-10 flex flex-col items-center"><div class="loader mb-6"></div><p class="text-[9px] font-mono animate-pulse uppercase">Verifying_Sacrifice...</p></div>`;
             setTimeout(() => {
-                document.getElementById('modal-body').innerHTML = `<div class="py-6 text-center space-y-4"><p class="text-[10px] font-black text-red-500 uppercase">REJECTED: UNTRUSTED_NODE</p><p class="text-[8px] opacity-40 uppercase">Direct payment restricted. Use PayPal to clear sacrifice.</p></div>`;
+                document.getElementById('modal-body').innerHTML = `<div class="py-6 text-center space-y-4"><p class="text-[12px] font-black text-red-500 uppercase">REJECTED: UNTRUSTED_DOLL</p><p class="text-[9px] opacity-40 uppercase leading-relaxed">Direct payment denied for your node level.<br>Use PayPal to clear the lock.</p></div>`;
             }, 4000);
         }
 
-        function triggerEnforcement() {
-            state.debtPending = true; document.getElementById('pay-signal').style.display = 'block';
-            if(state.debtTimer) clearTimeout(state.debtTimer);
-            state.debtTimer = setTimeout(() => { if(state.debtPending) location.reload(); }, 120000);
-        }
-
-        function confirmRuin() {
-            const title = document.getElementById('modal-title').innerText;
-            if(title.includes("$")) {
-                state.sacrifice += parseInt(title.match(/\d+/)[0]);
-                document.getElementById('sacrifice-total').innerText = "$" + state.sacrifice.toFixed(2);
-                localStorage.setItem('silk_sacrifice_' + state.dollId, state.sacrifice);
-            }
-            state.debtPending = false; document.getElementById('pay-signal').style.display = 'none';
+        function confirmSacrifice() {
+            const amtStr = document.getElementById('modal-title').innerText.match(/\d+/);
+            if(amtStr) state.sacrifice += parseInt(amtStr[0]);
+            document.getElementById('total-sacrifice').innerText = "$" + state.sacrifice.toFixed(2);
+            state.debtPending = false;
+            document.getElementById('pay-signal').style.display = 'none';
             document.getElementById('modal').classList.add('hidden');
         }
-
-        function showTribute(name) { showPenalty(`${name} SACRIFICE $100`); }
-        function spinWheel() { /* Existing logic */ }
     </script>
 </body>
 </html>
