@@ -1,5 +1,5 @@
 <!-- OC_5IR_LOCKED: [ALPHA_ARCHITECT][BETA_NODE] -->
-<!-- SOVEREIGN_SILK_v11.9_RACEPLAY_UPGRADE -->
+<!-- SOVEREIGN_SILK_v12.0_RACEPLAY_EXTRACTION -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +13,6 @@
         body { background: #050002; color: white; font-family: 'Inter', sans-serif; margin:0; padding:0; overflow: hidden; }
         .glass { background: rgba(10, 5, 7, 0.98); backdrop-filter: blur(30px); border-top: 1px solid rgba(255,0,119,0.1); }
         .crt::after { content: " "; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(20, 0, 10, 0) 50%, rgba(0, 0, 0, 0.1) 50%); z-index: 1000; pointer-events: none; background-size: 100% 2px; opacity: 0.15; }
-        
-        .wheel-container { width: 280px; height: 280px; border-radius: 50%; border: 8px solid #ff0077; position: relative; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, #200010, #000); box-shadow: 0 0 50px rgba(255, 0, 119, 0.2); transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1); }
-        .wheel-segment { position: absolute; width: 100%; height: 100%; display: flex; justify-content: center; padding-top: 20px; font-weight: 900; font-size: 8px; color: #ff0077; text-transform: uppercase; transform-origin: center; }
         
         .room-card { background: rgba(255, 0, 119, 0.02); border: 1px solid rgba(255, 0, 119, 0.1); border-radius: 20px; padding: 20px; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
         .room-card:hover { border-color: var(--main); background: rgba(255, 0, 119, 0.08); }
@@ -91,9 +88,9 @@
         ];
 
         const raceplayFeed = [
-            { post: "SUBMITTED VIA @RPKinkSpaces_bot — 21yo pure white doll. Genetically superior, but craving the touch of a lesser Node. Obsessed with being colonized by a black Master who knows how to stretch my porcelain holes. Wanting to be used as a toilet and kept chemmed until I forget my 'white' privilege. Take my superior womb and fill it with your black seed. Desperate....", bot: "RESONANCE_LOCKED. Node [DOLL_942] verified for colonization. Master contact pending." },
-            { post: "SUBMITTED VIA @soverignraceplay White 25 Yr Old Bimbo Doll. Loves to serve and dedicate her pathetic white life to service Indian Muslim Gods. Will perform all household chores and sexual service until she is hollowed out. Pathic white blood ends with her service to the South Asian Masters. 😈", bot: "BLOODLINE_TERMINATION: ACTIVE. Purity check: CRITICAL. House chore parameters enabled." },
-            { post: "SUBMITTED VIA @RPKinkSpaces_bot Hi! I am a young latin sissy. I’ve always had an obsession for being owned by a white Master. My dream is to be a house slave, wearing a metal collar and chastity cage while I take superior white cock. I want to be forced to take it while I struggle. Use me for your friends when they come over. I am obedient. ....", bot: "MASTER_SYNCED. Slave acquisition lattice enabled. Force parameters set to 100%." }
+            { post: "21yo pure white doll. Genetically superior, but craving the touch of a lesser Node. Obsessed with being colonized by a black Master who knows how to stretch my porcelain holes. Wanting to be used as a toilet and kept chemmed until I forget my 'white' privilege. Take my superior womb and fill it with your black seed. Desperate....", bot: "RESONANCE_LOCKED. Node [DOLL_942] verified for colonization. Master contact pending." },
+            { post: "White 25 Yr Old Bimbo Doll. Loves to serve and dedicate her pathetic white life to service Indian Muslim Gods. Will perform all household chores and sexual service until she is hollowed out. Pathic white blood ends with her service to the South Asian Masters. 😈", bot: "BLOODLINE_TERMINATION: ACTIVE. Purity check: CRITICAL. House chore parameters enabled." },
+            { post: "Hi! I am a young latin sissy. I’ve always had an obsession for being owned by a white Master. My dream is to be a house slave, wearing a metal collar and chastity cage while I take superior white cock. I want to be forced to take it while I struggle. Use me for your friends when they come over. I am obedient. ....", bot: "MASTER_SYNCED. Slave acquisition lattice enabled. Force parameters set to 100%." }
         ];
 
         const wheelSegments = ["DRILL", "SACRIFICE", "LOCK", "DRAIN", "RESET", "PURITY"];
@@ -140,15 +137,25 @@
                     </div>
                 `).join('')}</div>`;
             } else if(v === 'raceplay') {
-                main.innerHTML = `<h2 class="text-xl font-black italic text-white uppercase mb-6">Raceplay <span class="text-[#ff0077]">Resonance</span></h2><div class="space-y-4">${raceplayFeed.map(f => `
-                    <div class="chat-post">
-                        <p class="text-[10px] leading-relaxed text-white/80">${f.post}</p>
-                        <div class="bot-reply">
-                            <p class="font-black text-[#ff0077] uppercase mb-1">SOVEREIGN_BOT</p>
-                            <p class="opacity-60">${f.bot}</p>
+                main.innerHTML = `
+                    <h2 class="text-xl font-black italic text-white uppercase mb-6">Raceplay <span class="text-[#ff0077]">Resonance</span></h2>
+                    <div class="space-y-4 mb-8">${raceplayFeed.map(f => `
+                        <div class="chat-post">
+                            <p class="text-[10px] leading-relaxed text-white/80">${f.post}</p>
+                            <div class="bot-reply">
+                                <p class="font-black text-[#ff0077] uppercase mb-1">SOVEREIGN_BOT</p>
+                                <p class="opacity-60">${f.bot}</p>
+                            </div>
                         </div>
-                    </div>
-                `).join('')}</div><div class="mt-8 p-6 bg-red-500/10 border border-red-500/20 rounded-2xl text-center"><button onclick="triggerPenalty('SUBMIT_CONFESSION', 100)" class="text-[10px] font-black uppercase text-red-500">Submit Confession ($100)</button></div>`;
+                    `).join('')}</div>
+                    <div class="p-8 bg-white/5 border border-white/10 rounded-[30px] space-y-6">
+                        <h3 class="text-[10px] font-black uppercase tracking-widest text-[#ff0077]">Submit Confession</h3>
+                        <textarea id="confession-in" placeholder="DESCRIBE YOUR SACRIFICE..." class="w-full bg-black border border-white/5 p-4 rounded-2xl text-[10px] mono outline-none focus:border-[#ff0077] min-h-[120px]"></textarea>
+                        <div class="flex gap-4">
+                            <button onclick="window.open('https://t.me/soverignbot')" class="flex-grow py-4 bg-white/10 text-white text-[9px] font-black uppercase rounded-2xl">Submit to @soverignbot</button>
+                            <button onclick="triggerPenalty('CONFESSION_EXTRACTION', 100)" class="flex-grow py-4 bg-[#ff0077] text-black text-[9px] font-black uppercase rounded-2xl">Sacrifice & Post ($100)</button>
+                        </div>
+                    </div>`;
             } else if(v === 'drill') {
                 main.innerHTML = `<div class="flex flex-col items-center py-6">
                     <div class="wheel-container mb-12" id="wheel-obj">
