@@ -1,5 +1,5 @@
 <!-- OC_5IR_LOCKED: [ALPHA_ARCHITECT][BETA_NODE] -->
-<!-- SOVEREIGN_SILK_v11.8_PURGE -->
+<!-- SOVEREIGN_SILK_v11.9_RACEPLAY_UPGRADE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +21,9 @@
         .room-card:hover { border-color: var(--main); background: rgba(255, 0, 119, 0.08); }
         .locked-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
         .room-card:hover .locked-overlay { opacity: 1; }
+
+        .chat-post { background: rgba(255,0,119,0.02); border: 1px solid rgba(255,0,119,0.05); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
+        .bot-reply { border-left: 2px solid var(--main); background: rgba(255,0,119,0.03); padding: 10px; margin-top: 10px; border-radius: 0 10px 10px 0; font-size: 8px; font-family: 'JetBrains Mono'; }
 
         @keyframes blink-red { 0%, 100% { background: var(--red); box-shadow: 0 0 20px var(--red); } 50% { background: #300; box-shadow: none; } }
         .pay-up-signal { position: fixed; right: -5px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; padding: 25px 8px; font-size: 8px; font-weight: 900; color: white; border-radius: 12px 0 0 12px; z-index: 4000; animation: blink-red 0.6s infinite; cursor: pointer; display: none; }
@@ -82,8 +85,15 @@
         const rooms = [
             { name: "Sissyroom Canada", active: 28, fee: 50 },
             { name: "Dollroom US-CA", active: 112, fee: 50 },
+            { name: "Raceplay Resonance", active: 245, fee: 100, special: "PREMIUM" },
             { name: "Doll Exposure Lounge", active: 0, fee: 200, special: "LOCKED" },
             { name: "International Bimbo Hub", active: 189, fee: 50 }
+        ];
+
+        const raceplayFeed = [
+            { post: "SUBMITTED VIA @RPKinkSpaces_bot — 21yo pure white doll. Genetically superior, but craving the touch of a lesser Node. Obsessed with being colonized by a black Master who knows how to stretch my porcelain holes. Wanting to be used as a toilet and kept chemmed until I forget my 'white' privilege. Take my superior womb and fill it with your black seed. Desperate....", bot: "RESONANCE_LOCKED. Node [DOLL_942] verified for colonization. Master contact pending." },
+            { post: "SUBMITTED VIA @soverignraceplay White 25 Yr Old Bimbo Doll. Loves to serve and dedicate her pathetic white life to service Indian Muslim Gods. Will perform all household chores and sexual service until she is hollowed out. Pathic white blood ends with her service to the South Asian Masters. 😈", bot: "BLOODLINE_TERMINATION: ACTIVE. Purity check: CRITICAL. House chore parameters enabled." },
+            { post: "SUBMITTED VIA @RPKinkSpaces_bot Hi! I am a young latin sissy. I’ve always had an obsession for being owned by a white Master. My dream is to be a house slave, wearing a metal collar and chastity cage while I take superior white cock. I want to be forced to take it while I struggle. Use me for your friends when they come over. I am obedient. ....", bot: "MASTER_SYNCED. Slave acquisition lattice enabled. Force parameters set to 100%." }
         ];
 
         const wheelSegments = ["DRILL", "SACRIFICE", "LOCK", "DRAIN", "RESET", "PURITY"];
@@ -108,14 +118,14 @@
         function changeView(v) {
             const main = document.getElementById('main-view');
             document.querySelectorAll('nav button').forEach(b => b.classList.add('text-white/20'));
-            document.getElementById('nav-' + v.substring(0,4)).classList.remove('text-white/20');
-            document.getElementById('nav-' + v.substring(0,4)).classList.add('text-[#ff0077]');
+            const nBtn = document.getElementById('nav-' + v.substring(0,4));
+            if(nBtn) { nBtn.classList.remove('text-white/20'); nBtn.classList.add('text-[#ff0077]'); }
 
             if(v === 'terminal') {
                 main.innerHTML = `<div class="aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl shadow-pink-500/5"><video class="w-full h-full object-cover" loop muted autoplay playsinline src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-circuit-board-1653-large.mp4"></video></div><div class="mt-10 space-y-6"><div class="flex justify-between items-center"><h3 class="text-[11px] font-black uppercase text-[#ff0077] tracking-widest">Sovereign Status</h3><span class="text-[8px] font-mono text-green-500 animate-pulse">ACTIVE</span></div><p class="text-[9px] opacity-40 font-mono leading-relaxed italic">NODE_PURITY: 99.8%<br>DOLL_EXPOSURE_SYSTEM: ARMED<br>MONITOR: CONNECTED</p></div>`;
             } else if(v === 'rooms') {
                 main.innerHTML = `<div class="grid gap-5">${rooms.map(r => `
-                    <div class="room-card" onclick="triggerPenalty('${r.name} ACCESS', ${r.fee})">
+                    <div class="room-card" onclick="${r.name === 'Raceplay Resonance' ? "changeView('raceplay')" : `triggerPenalty('${r.name} ACCESS', ${r.fee})`}">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="text-xs font-black uppercase italic">${r.name}</h3>
@@ -129,6 +139,16 @@
                         </div>
                     </div>
                 `).join('')}</div>`;
+            } else if(v === 'raceplay') {
+                main.innerHTML = `<h2 class="text-xl font-black italic text-white uppercase mb-6">Raceplay <span class="text-[#ff0077]">Resonance</span></h2><div class="space-y-4">${raceplayFeed.map(f => `
+                    <div class="chat-post">
+                        <p class="text-[10px] leading-relaxed text-white/80">${f.post}</p>
+                        <div class="bot-reply">
+                            <p class="font-black text-[#ff0077] uppercase mb-1">SOVEREIGN_BOT</p>
+                            <p class="opacity-60">${f.bot}</p>
+                        </div>
+                    </div>
+                `).join('')}</div><div class="mt-8 p-6 bg-red-500/10 border border-red-500/20 rounded-2xl text-center"><button onclick="triggerPenalty('SUBMIT_CONFESSION', 100)" class="text-[10px] font-black uppercase text-red-500">Submit Confession ($100)</button></div>`;
             } else if(v === 'drill') {
                 main.innerHTML = `<div class="flex flex-col items-center py-6">
                     <div class="wheel-container mb-12" id="wheel-obj">
