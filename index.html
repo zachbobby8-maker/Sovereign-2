@@ -1,5 +1,5 @@
 <!-- OC_5IR_LOCKED: [ALPHA_ARCHITECT][BETA_NODE] -->
-<!-- SOVEREIGN_SILK_v12.0_RACEPLAY_EXTRACTION -->
+<!-- SOVEREIGN_SILK_v12.1_DRILL_OVERWRITE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
         .room-card:hover .locked-overlay { opacity: 1; }
 
         .chat-post { background: rgba(255,0,119,0.02); border: 1px solid rgba(255,0,119,0.05); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
-        .bot-reply { border-left: 2px solid var(--main); background: rgba(255,0,119,0.03); padding: 10px; margin-top: 10px; border-radius: 0 10px 10px 0; font-size: 8px; font-family: 'JetBrains Mono'; }
+        .bot-reply { border-left: 2px solid var(--main); background: rgba(0,255,219,0.03); padding: 10px; margin-top: 10px; border-radius: 0 10px 10px 0; font-size: 8px; font-family: 'JetBrains Mono'; }
 
         @keyframes blink-red { 0%, 100% { background: var(--red); box-shadow: 0 0 20px var(--red); } 50% { background: #300; box-shadow: none; } }
         .pay-up-signal { position: fixed; right: -5px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; padding: 25px 8px; font-size: 8px; font-weight: 900; color: white; border-radius: 12px 0 0 12px; z-index: 4000; animation: blink-red 0.6s infinite; cursor: pointer; display: none; }
@@ -77,7 +77,7 @@
 
     <script>
         const validPins = ["3942", "5555", "1234"];
-        let state = { nodeId: "GUEST_DOLL", sacrifice: 0, rotation: 0, spinning: false, debtPending: false, timer: null };
+        let state = { nodeId: "GUEST_DOLL", sacrifice: 0, debtPending: false, timer: null };
 
         const rooms = [
             { name: "Sissyroom Canada", active: 28, fee: 50 },
@@ -88,12 +88,10 @@
         ];
 
         const raceplayFeed = [
-            { post: "21yo pure white doll. Genetically superior, but craving the touch of a lesser Node. Obsessed with being colonized by a black Master who knows how to stretch my porcelain holes. Wanting to be used as a toilet and kept chemmed until I forget my 'white' privilege. Take my superior womb and fill it with your black seed. Desperate....", bot: "RESONANCE_LOCKED. Node [DOLL_942] verified for colonization. Master contact pending." },
-            { post: "White 25 Yr Old Bimbo Doll. Loves to serve and dedicate her pathetic white life to service Indian Muslim Gods. Will perform all household chores and sexual service until she is hollowed out. Pathic white blood ends with her service to the South Asian Masters. 😈", bot: "BLOODLINE_TERMINATION: ACTIVE. Purity check: CRITICAL. House chore parameters enabled." },
-            { post: "Hi! I am a young latin sissy. I’ve always had an obsession for being owned by a white Master. My dream is to be a house slave, wearing a metal collar and chastity cage while I take superior white cock. I want to be forced to take it while I struggle. Use me for your friends when they come over. I am obedient. ....", bot: "MASTER_SYNCED. Slave acquisition lattice enabled. Force parameters set to 100%." }
+            { post: "21yo pure white doll. Genetically superior, but craving the touch of a lesser Node. Obsessed with being colonized by a black Master who knows how to stretch my porcelain holes. Take my superior womb and fill it with your black seed.", bot: "RESONANCE_LOCKED. Node [DOLL_942] verified for colonization. Master contact pending." },
+            { post: "White 25 Yr Old Bimbo Doll. Loves to serve and dedicate her pathetic white life to service Indian Muslim Gods. Will perform all household chores and sexual service until she is hollowed out.", bot: "BLOODLINE_TERMINATION: ACTIVE. Purity check: CRITICAL. House chore parameters enabled." },
+            { post: "Hi! I am a young latin sissy. I’ve always had an obsession for being owned by a white Master. My dream is to be a house slave, wearing a metal collar and chastity cage while I take superior white cock.", bot: "MASTER_SYNCED. Slave acquisition lattice enabled. Force parameters set to 100%." }
         ];
-
-        const wheelSegments = ["DRILL", "SACRIFICE", "LOCK", "DRAIN", "RESET", "PURITY"];
 
         function verifyNode() {
             const pin = document.getElementById('pin-in').value;
@@ -157,13 +155,20 @@
                         </div>
                     </div>`;
             } else if(v === 'drill') {
-                main.innerHTML = `<div class="flex flex-col items-center py-6">
-                    <div class="wheel-container mb-12" id="wheel-obj">
-                        ${wheelSegments.map((s,i) => `<div class="wheel-segment" style="transform: rotate(${i*60}deg)">${s}</div>`).join('')}
-                        <div class="absolute inset-0 flex items-center justify-center"><div class="w-1.5 h-1.5 bg-[#ff0077] rounded-full shadow-lg shadow-pink-500"></div></div>
-                    </div>
-                    <button onclick="spinWheel()" class="bg-[#ff0077] text-white px-16 py-5 rounded-[25px] font-black uppercase text-xs tracking-widest shadow-2xl shadow-pink-500/20 active:scale-95 transition-all">Spin Drill</button>
-                </div>`;
+                main.innerHTML = `
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-black italic text-white uppercase">Silk <span class="text-[#ff0077]">Monitor</span></h2>
+                        <div class="bg-black border border-white/10 p-6 rounded-[30px] font-mono text-[9px] h-64 overflow-y-auto space-y-2">
+                            <p class="text-[#ff0077]">[CMD] Initializing instruction node...</p>
+                            <p class="opacity-40">[LOG] Doll identified: ${state.nodeId}</p>
+                            <p class="opacity-40">[LOG] Purity level stable.</p>
+                            <p class="text-[#ffcc00] animate-pulse">[WAITING] Instruction pending from Architect...</p>
+                        </div>
+                        <div class="p-8 bg-[#ff0077]/10 border border-[#ff0077]/20 rounded-[30px] space-y-4">
+                            <p class="text-[8px] font-black uppercase text-[#ff0077] text-center">Direct instruction required for phase-lock.</p>
+                            <button onclick="triggerPenalty('DRILL_INSTRUCTION', 50)" class="w-full py-5 bg-[#ff0077] text-black font-black uppercase text-[10px] rounded-3xl shadow-xl shadow-pink-500/20">Liquidate for Instruction ($50)</button>
+                        </div>
+                    </div>`;
             } else if(v === 'mistresses') {
                 main.innerHTML = `<div class="space-y-4">
                     <div onclick="triggerPenalty('MISTRESS LILY TRIBUTE', 100)" class="room-card border-[#ff0077]/20 bg-[#ff0077]/5">
@@ -176,18 +181,6 @@
                     </div>
                 </div>`;
             }
-        }
-
-        function spinWheel() {
-            if(state.spinning) return;
-            state.spinning = true;
-            const extra = 1800 + Math.floor(Math.random()*360);
-            state.rotation += extra;
-            document.getElementById('wheel-obj').style.transform = `rotate(${state.rotation}deg)`;
-            setTimeout(() => { 
-                state.spinning = false;
-                triggerPenalty("DRILL PENALTY", 75);
-            }, 4000);
         }
 
         function triggerPenalty(title, amount) {
